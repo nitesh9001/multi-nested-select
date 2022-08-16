@@ -1,6 +1,8 @@
 # REACT MULTI-NESTED-SELECT DROPDOWN 
 
+![npm](https://img.shields.io/npm/v/multi-nested-select)
 ![License](https://img.shields.io/npm/l/multiselect-react-dropdown.svg)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/multi-nested-select)
 
 💥💥💥 **React Library for SCREEN RECORDER . Tiny and Efficient. [Check it Out](https://www.npmjs.com/package/recorderweb)** 💥💥💥
 
@@ -132,3 +134,7 @@ This package is build with typescript, react js and webpack .
 Contributions are welcome, please open an issue and preferrably file a pull request.
 
 Opening Issue Please share sample code using codesandbox.com or stackblitz.com to help me re-produce the issue.
+
+## 11. Playground
+
+https://codesandbox.io/s/multi-select-nested-options-5eyyu4?file=/src/App.js
