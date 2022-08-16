@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "index.js",
-    library: "nested-select",
+    library: "multi-nested-select",
     libraryTarget: "umd",
     // umdNamedDefine: true,
   },

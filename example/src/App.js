@@ -1,6 +1,6 @@
 import './App.css';
 import React ,{ useEffect, useState } from 'react';
-import {SelectCountry} from "nested-select";
+import {NestedSelect} from "multi-nested-select";
 
 const App = () => {
 
@@ -15,11 +15,10 @@ const App = () => {
     <div className="App">
       <h1>Nested select component</h1>
       <div className='center-component'>
-        <SelectCountry
+        <NestedSelect
           buttonContent="Done"
           enableButton={true}
           state={true}
-          disabled
           continent={true}
           callback={(val) => callbackFUnction(val)}/>
       </div>

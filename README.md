@@ -1,11 +1,11 @@
-# REACT NESTED-SELECT DROPDOWN 
+# REACT MULTI-NESTED-SELECT DROPDOWN 
 
 ![License](https://img.shields.io/npm/l/multiselect-react-dropdown.svg)
 
 💥💥💥 **React Library for SCREEN RECORDER . Tiny and Efficient. [Check it Out](https://www.npmjs.com/package/recorderweb)** 💥💥💥
 
 
-## Description   
+## Description
 
 A React component which provides multi select functionality for nested option list of continent -> country -> state with various features like selection limit, CSS customization, checkbox, search option, disable preselected values, control nested level keyboard navigation for accessibility and grouping features. Also it has feature to behave like normal dropdown(means single select dropdown).
 
@@ -20,9 +20,9 @@ A React component which provides multi select functionality for nested option li
 
 ## 1. Installation 🔧
 ```
-npm install nested-select
+npm install multi-nested-select
 
-yarn add nested-select
+yarn add multi-nested-select
 ```
 ----
 ## 2. Demo 👁️
@@ -31,7 +31,7 @@ yarn add nested-select
 ----
 ## 3. Basic Usage 📑
 ```js
-import NestedSelect from "nested-select";;
+import NestedSelect from "multi-nested-select";;
 
 
 callbackFunction(selectedItem) {
@@ -82,15 +82,13 @@ onChange(e_selected) {
 ----
 
 
-
-
 ## 5. CSS Customization 🌈
 
 ```css
 For customization of CSS we have provide className based support 
 
 * For input box -- 
-Pass props as inputClass= "... your class name... "
+Pass props as inputClass= " ... your class name... "
 ex- <SelectCountry 
       inputClass="myCustom_text"
     />
