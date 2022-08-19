@@ -1,5 +1,6 @@
 export type moduleProps = {
     buttonContent?: string
+    selectedValue?: any
     state?: boolean
     continent?: boolean
     callback?: (value: any) => void | undefined
@@ -18,4 +19,5 @@ export type ActionButtonProps = {
     buttonContent?: string
     callback: (value: any) => void | undefined
     buttonClass?: string
+    closeDropDown: (value: any) => void | undefined
   };

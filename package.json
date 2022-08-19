@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "webpack --mode production",
-    "clean": "rm -rf dist"
+    "build": "npm run copy-dts && webpack --mode production",
+    "clean": "rm -rf dist",
+    "copy-dts": "copyfiles -u 1 \"src/**/*.d.ts\" dist"
   },
   "engines": {
     "node": ">=10"
@@ -36,6 +37,7 @@
     "@babel/preset-env": "^7.18.10",
     "@types/react": "^18.0.17",
     "babel-loader": "^8.2.5",
+    "copyfiles": "^2.4.1",
     "css-loader": "^6.7.1",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.3.1",
@@ -48,6 +50,7 @@
     "type": "git",
     "url": "https://github.com/nitesh9001/nested-select"
   },
+  "homepage": "https://github.com/nitesh9001/nested-select/blob/main/README.md",
   "bugs": {
     "url": "https://github.com/nitesh9001/nested-select/issues"
   },

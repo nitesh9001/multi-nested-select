@@ -3,13 +3,19 @@
 ![npm](https://img.shields.io/npm/v/multi-nested-select)
 ![License](https://img.shields.io/npm/l/multiselect-react-dropdown.svg)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/multi-nested-select)
-
+![npm](https://img.shields.io/npm/dw/multi-nested-select)
+![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/multi-nested-select)
 💥💥💥 **React Library for SCREEN RECORDER . Tiny and Efficient. [Check it Out](https://www.npmjs.com/package/recorderweb)** 💥💥💥
 
 
 ## Description
 
 A React component which provides multi select functionality for nested option list of continent -> country -> state with various features like selection limit, CSS customization, checkbox, search option, disable preselected values, control nested level keyboard navigation for accessibility and grouping features. Also it has feature to behave like normal dropdown(means single select dropdown).
+
+![alt text](./images/select.png)
+![alt text](./images/select2.png)
+![alt text](./images/select3.png)
+![alt text](./images/select4.png)
 
 
 ## 🎉🎉 New features in >=1.0.1  

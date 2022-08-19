@@ -8,6 +8,7 @@ import './SelectModule.css';
 
 const NestedSelect = ({
     buttonContent,
+    selectedValue,
     callback,
     trailing,
     state,
@@ -32,6 +33,37 @@ const NestedSelect = ({
     const [checkledValue, setcheckledValue] = useState<any>([]);
     var dataFor: any | undefined;
     const ref = useRef<null | any>(null);
+
+    useEffect(() => {
+        setcheckledValue(selectedValue ? selectedValue : []);
+    },[]);
+
+    useEffect(() => {
+        if (trailing !== undefined) {
+            setShowTrailing(trailing);
+        }
+        if (enableButton !== undefined) {
+            setShowButtonComponent(enableButton);
+        }
+        if (continent !== undefined) {
+            setShowContinent(continent);
+        }
+        if (state !== undefined) {
+            setShowState(state);
+        }
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (event: any) => {
+            if (ref.current && !ref.current.contains(event.target)) {
+                setopenDropDown(false);
+            }
+        };
+        document.addEventListener('click', handleClickOutside, true);
+        return () => {
+            document.removeEventListener('click', handleClickOutside, true);
+        };
+    }, [openDropDown]);
 
     const openShow = (e: any, i: number) => {
         if (i === expandCountry)
@@ -150,33 +182,6 @@ const NestedSelect = ({
         return result
     }
 
-    useEffect(() => {
-        if (trailing !== undefined) {
-            setShowTrailing(trailing);
-        }
-        if (enableButton !== undefined) {
-            setShowButtonComponent(enableButton);
-        }
-        if (continent !== undefined) {
-            setShowContinent(continent);
-        }
-        if (state !== undefined) {
-            setShowState(state);
-        }
-    }, []);
-
-    useEffect(() => {
-        const handleClickOutside = (event: any) => {
-            if (ref.current && !ref.current.contains(event.target)) {
-                setopenDropDown(false);
-            }
-        };
-        document.addEventListener('click', handleClickOutside, true);
-        return () => {
-            document.removeEventListener('click', handleClickOutside, true);
-        };
-    }, [openDropDown]);
-
     const onChangeComp = () => {
         if (onChange) {
             onChange(dataFor);
@@ -198,7 +203,7 @@ const NestedSelect = ({
                 {...props}
             />
             {openDropDown &&
-                <div className={`${dropDownClass} NSI-select-drop-down-menu-wrapper`} onClick={() => setopenDropDown(true)}>
+                <div className={`${dropDownClass} NSI-select-drop-down-menu-wrapper`} >
                     <div className='NSI-select-drop-down-menu-itembox'>
                         {Countries.map((conti_data: any, index: number) =>
                             <>
@@ -253,6 +258,9 @@ const NestedSelect = ({
                             callback={callback ? callback : () => { }}
                             buttonContent={buttonContent}
                             buttonClass={buttonClass}
+                            closeDropDown={(val: any) => {
+                                setopenDropDown(val)
+                            }}
                         />
                     </>
                     }

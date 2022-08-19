@@ -1,11 +1,38 @@
 import './App.css';
 import React ,{ useEffect, useState } from 'react';
-import {NestedSelect} from "multi-nested-select";
+import {NestedSelect} from 'multi-nested-select' 
 
 const App = () => {
 
   const [response, setResponse] = useState([]);
-
+  const data = [{
+    "name": "Afghanistan",
+    "code": "AF",
+    "zones": [],
+    "continent": "Asia",
+    "phoneNumberPrefix": 93,
+    "autocompletionField": "address1",
+    "provinceKey": "REGION",
+    "labels": {
+        "address1": "Address",
+        "address2": "Apartment, suite, etc.",
+        "city": "City",
+        "company": "Company",
+        "country": "Country/region",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "phone": "Phone",
+        "postalCode": "Postal code",
+        "zone": "Region"
+    },
+    "optionalLabels": {
+        "address2": "Apartment, suite, etc. (optional)"
+    },
+    "formatting": {
+        "edit": "{country}_{firstName}{lastName}_{company}_{address1}_{address2}_{city}{zip}_{phone}",
+        "show": "{firstName} {lastName}_{company}_{address1}_{address2}_{zip} {city}_{country}_{phone}"
+    }
+  }];
   const callbackFUnction = (value) => {
     console.log(value);
     setResponse(value);
@@ -20,6 +47,7 @@ const App = () => {
           enableButton={true}
           state={true}
           continent={true}
+          selectedValue={data}
           callback={(val) => callbackFUnction(val)}/>
       </div>
       <h1>Selected Country-state</h1>

@@ -16,20 +16,20 @@
   border: 1px solid #dcdcdc;
   cursor: pointer;
 }
+
 .NSI-continent-listitem{
   font-size: 18px;
   font-weight: 600;
   color: grey;
   margin: 5px auto;
-  height: 30px;
+  padding: 8px;
   background-color: rgba(234, 234, 234, 0.484);
 }
+
 .NSI-continent-text{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   list-style: none;
 }
+
 .NSI-select-drop-down-menu-itembox {
   width: 98%;
   height: 250px;
@@ -41,9 +41,11 @@
   background-color: rgb(255, 255, 255);
   color: rgba(0, 0, 0, 0.87);
 }
+
 .NSI-select-drop-down-menu-itembox::-webkit-scrollbar-track{
   background: red;
 }
+
 .NSI-select-menuitem-list {
   list-style: none;
   padding: 8px 0px;
@@ -149,15 +151,12 @@
   display: none;
 }
 
-/* Demonstrate a "mostly customized" scrollbar
- * (won't be visible otherwise if width/height is specified) */
 .NSI-select-drop-down-menu-itembox::-webkit-scrollbar {
   width: 5px;
   height: 8px;
   background-color: #aaa; /* or add it to the track */
 }
 
-/* Add a thumb */
 .NSI-select-drop-down-menu-itembox::-webkit-scrollbar-thumb {
   background: #000;
 }
