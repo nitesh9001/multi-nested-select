@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 const { Countries } = require('../Utils/db_country_state.js');
 import Arrow from '../Assets/down-arrow.svg';
 import ActionButton from '../Elements/ActionButton';
-import { moduleProps } from '../types';
+import { moduleProps } from '../typings';
 import './SelectModule.css';
 
 const NestedSelect = ({
