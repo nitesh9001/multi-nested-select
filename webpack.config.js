@@ -9,7 +9,7 @@ module.exports = {
     filename: "index.js",
     library: "multi-nested-select",
     libraryTarget: "umd",
-    // umdNamedDefine: true,
+    umdNamedDefine: true,
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx", ".css"],

@@ -3,13 +3,19 @@
 ![npm](https://img.shields.io/npm/v/multi-nested-select)
 ![License](https://img.shields.io/npm/l/multiselect-react-dropdown.svg)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/multi-nested-select)
-
+![npm](https://img.shields.io/npm/dw/multi-nested-select)
+![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/multi-nested-select)
 💥💥💥 **React Library for SCREEN RECORDER . Tiny and Efficient. [Check it Out](https://www.npmjs.com/package/recorderweb)** 💥💥💥
 
 
 ## Description
 
 A React component which provides multi select functionality for nested option list of continent -> country -> state with various features like selection limit, CSS customization, checkbox, search option, disable preselected values, control nested level keyboard navigation for accessibility and grouping features. Also it has feature to behave like normal dropdown(means single select dropdown).
+
+![alt text](./images/select.png)
+![alt text](./images/select2.png)
+![alt text](./images/select3.png)
+![alt text](./images/select4.png)
 
 
 ## 🎉🎉 New features in >=1.0.1  
@@ -67,9 +73,9 @@ onChange(e_selected) {
 | `onSearch` | `function` | `func` | Callback function will invoked on change of input feild event (similar to onChange). Params are searchValue
 | `onChange` | `function` | `func` | Callback function will invoked on selection or removal of options. Params are selectedList
 | `disabled` | `boolean` | `false` | Make it `true` to disable the select input feild.
-| `selectedValues` | `array` | `[]` | Preselected value to persist in dropdown
+| `selectedValue` | `array` | `[]` | Preselected value to persist in dropdown
 | `showCheckbox` | `bool` | `true` | To display checkbox option in the dropdown
-| `selectionLimit` | `number` | `-1` | You can limit the number of items that can be selected in a dropdown
+| `selectLimit` | `number` | `-1` | You can limit the number of items that can be selected in a dropdown
 | `placeholder` | `string` | `Select Area` | Placeholder text
 | `buttonContent` | `string` | `Save Selected` | To display the button text content`
 | `width` | `number` | `360` | width of the component to display dropdown.
@@ -136,5 +142,4 @@ Contributions are welcome, please open an issue and preferrably file a pull requ
 Opening Issue Please share sample code using codesandbox.com or stackblitz.com to help me re-produce the issue.
 
 ## 11. Playground
-
 https://codesandbox.io/s/multi-select-nested-options-5eyyu4?file=/src/App.js

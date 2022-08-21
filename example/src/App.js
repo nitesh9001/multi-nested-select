@@ -1,11 +1,38 @@
 import './App.css';
 import React ,{ useEffect, useState } from 'react';
-import {NestedSelect} from "multi-nested-select";
+import {NestedSelect} from 'multi-nested-select' 
 
 const App = () => {
 
   const [response, setResponse] = useState([]);
-
+  const data = [{
+    "name": "Afghanistan",
+    "code": "AF",
+    "zones": [],
+    "continent": "Asia",
+    "phoneNumberPrefix": 93,
+    "autocompletionField": "address1",
+    "provinceKey": "REGION",
+    "labels": {
+        "address1": "Address",
+        "address2": "Apartment, suite, etc.",
+        "city": "City",
+        "company": "Company",
+        "country": "Country/region",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "phone": "Phone",
+        "postalCode": "Postal code",
+        "zone": "Region"
+    },
+    "optionalLabels": {
+        "address2": "Apartment, suite, etc. (optional)"
+    },
+    "formatting": {
+        "edit": "{country}_{firstName}{lastName}_{company}_{address1}_{address2}_{city}{zip}_{phone}",
+        "show": "{firstName} {lastName}_{company}_{address1}_{address2}_{zip} {city}_{country}_{phone}"
+    }
+  }];
   const callbackFUnction = (value) => {
     console.log(value);
     setResponse(value);
@@ -13,13 +40,16 @@ const App = () => {
   
   return (
     <div className="App">
-      <h1>Nested select component</h1>
+      <hr className='hr_dm'/>
+      <h1>Multi Nested Select Component</h1>
       <div className='center-component'>
         <NestedSelect
           buttonContent="Done"
           enableButton={true}
           state={true}
+          selectLimit={3}
           continent={true}
+          selectedValue={data}
           callback={(val) => callbackFUnction(val)}/>
       </div>
       <h1>Selected Country-state</h1>
@@ -35,20 +65,22 @@ const App = () => {
               <th>State code</th>
             </tr>
           </thead>
+          <tbody>
           {response && response.map((data,i) => <tr key={i}>
-              <th>{i+1}</th>
-              <th>{data.name}</th>
-              <th>{data.code}</th>
-              <th>{data.zones?.length > 0 ? data.zones.map((item,j) => <tr key={j}>
-                <th>{j+1}. {item.name}</th>
+              <td>{i+1} .</td>
+              <td>{data.name}</td>
+              <td>{data.code}</td>
+              <td>{data.zones?.length > 0 ? data.zones.map((item,j) => <tr key={j}>
+                <td>{j+1}. {item.name}</td>
                 </tr>
-              ) :"-"}</th>
-              <th>{data.zones?.length > 0 ? data.zones.map((item,j) => <tr key={j}>
-                <th>{item.code}</th>
+              ) :"-"}</td>
+              <td>{data.zones?.length > 0 ? data.zones.map((item,j) => <tr key={j}>
+                <td>{item.code}</td>
                 </tr>
-              ) :"-"}</th>
+              ) :"-"}</td>
             </tr>
           )}
+          </tbody>
         </table>
       </div>
     </div>

@@ -6,7 +6,8 @@ function ActionButton({
   value,
   callback,
   buttonContent,
-  buttonClass
+  buttonClass,
+  closeDropDown
 }: ActionButtonProps) {
 
   const [isLoading, setIsloading] = useState<boolean>(false);
@@ -35,6 +36,7 @@ function ActionButton({
         callback(value);
       }
     }
+     closeDropDown(false);
   };
 
   return (
