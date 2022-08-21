@@ -73,9 +73,9 @@ onChange(e_selected) {
 | `onSearch` | `function` | `func` | Callback function will invoked on change of input feild event (similar to onChange). Params are searchValue
 | `onChange` | `function` | `func` | Callback function will invoked on selection or removal of options. Params are selectedList
 | `disabled` | `boolean` | `false` | Make it `true` to disable the select input feild.
-| `selectedValues` | `array` | `[]` | Preselected value to persist in dropdown
+| `selectedValue` | `array` | `[]` | Preselected value to persist in dropdown
 | `showCheckbox` | `bool` | `true` | To display checkbox option in the dropdown
-| `selectionLimit` | `number` | `-1` | You can limit the number of items that can be selected in a dropdown
+| `selectLimit` | `number` | `-1` | You can limit the number of items that can be selected in a dropdown
 | `placeholder` | `string` | `Select Area` | Placeholder text
 | `buttonContent` | `string` | `Save Selected` | To display the button text content`
 | `width` | `number` | `360` | width of the component to display dropdown.
@@ -142,5 +142,4 @@ Contributions are welcome, please open an issue and preferrably file a pull requ
 Opening Issue Please share sample code using codesandbox.com or stackblitz.com to help me re-produce the issue.
 
 ## 11. Playground
-
 https://codesandbox.io/s/multi-select-nested-options-5eyyu4?file=/src/App.js

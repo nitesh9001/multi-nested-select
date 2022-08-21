@@ -35,6 +35,7 @@
   "devDependencies": {
     "@babel/core": "^7.18.10",
     "@babel/preset-env": "^7.18.10",
+    "@types/jquery": "^3.5.14",
     "@types/react": "^18.0.17",
     "babel-loader": "^8.2.5",
     "copyfiles": "^2.4.1",

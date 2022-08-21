@@ -1,6 +1,7 @@
 export type moduleProps = {
     buttonContent?: string
     selectedValue?: any
+    selectLimit?: undefined | number
     state?: boolean
     continent?: boolean
     callback?: (value: any) => void | undefined

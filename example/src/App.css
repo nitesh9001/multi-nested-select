@@ -1,5 +1,18 @@
+#root{
+  background-color: aliceblue;
+  margin: 0px;
+  padding: 0px;
+}
 .App {
   text-align: center;
+  min-height: 200vh;
+  /* padding-top: 20px; */
+  margin-top: 0px;
+}
+.hr_dm{
+  width: 100%;
+  margin: 0px;
+  border: 5px solid rgb(126, 199, 255);
 }
 th{
   text-align: left;
@@ -11,6 +24,12 @@ th{
 tr{
   border: 1px solid red !important;
   vertical-align: top !important;
+}
+td{
+  background-color: rgb(232, 232, 232);
+  border-radius: 2px;
+  text-align: center;
+  padding: 2px;
 }
 .center-table{
  width: 90%;

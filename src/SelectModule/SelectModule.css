@@ -2,6 +2,9 @@
   width: 360px;
   height: auto;
   position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
 }
 
 .NSI-input-box {
@@ -57,7 +60,7 @@
   text-align: left;
 }
 
-.NSI-select-menuitem-inner-list {
+.NSI-select-menuitem-list.inner-list {
   list-style: none;
   padding: 8px 0px;
   display: flex;

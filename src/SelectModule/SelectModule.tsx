@@ -5,10 +5,10 @@ import ActionButton from '../Elements/ActionButton';
 import { moduleProps } from '../types';
 import './SelectModule.css';
 
-
 const NestedSelect = ({
     buttonContent,
     selectedValue,
+    selectLimit,
     callback,
     trailing,
     state,
@@ -30,12 +30,16 @@ const NestedSelect = ({
     const [showState, setShowState] = useState<boolean>(true);
     const [showContinent, setShowContinent] = useState<boolean>(true);
     const [searchValue, setsearchValue] = useState<string>("");
-    const [checkledValue, setcheckledValue] = useState<any>([]);
+    const [checkledValues, setcheckledValues] = useState<any>([]);
+    const [selectItemLimit, setSelectItemLimit] = useState<number>(-1);
+    const [disableSelectBox, setDisableSelectBox] = useState<boolean>(false);
+
     var dataFor: any | undefined;
     const ref = useRef<null | any>(null);
 
     useEffect(() => {
-        setcheckledValue(selectedValue ? selectedValue : []);
+        setSelectItemLimit(selectLimit ?? -1);
+        setcheckledValues(selectedValue ??  []);
     },[]);
 
     useEffect(() => {
@@ -65,6 +69,14 @@ const NestedSelect = ({
         };
     }, [openDropDown]);
 
+    useEffect(() => {
+        if(selectItemLimit && selectItemLimit > 0 ){
+            if(selectItemLimit <= checkledValues.length){
+                setDisableSelectBox(true);
+            }
+        }
+    }, [checkledValues]);
+
     const openShow = (e: any, i: number) => {
         if (i === expandCountry)
             setExpandCountry(-1);
@@ -75,8 +87,26 @@ const NestedSelect = ({
     const searchCountiresorState = (e: any) => {
         setsearchValue(e.target.value);
         let val = e.target.value?.toLowerCase();
-        const element = document.getElementById(val);
-        element?.scrollIntoView();
+        function scrollIfNeeded(element:any, container:any) {
+            if (element.offsetTop < container.scrollTop) {
+              container.scrollTop = element.offsetTop;
+            }
+            else {
+                const offsetBottom = element.offsetTop ;
+                const scrollBottom = container.offsetHeight ;
+                if (offsetBottom > scrollBottom) {
+                  container.scrollTop = offsetBottom ;
+                }
+            }
+          }
+        document.querySelectorAll(".NSI-select-menuitem-list")
+        .forEach((ef:any) => {
+        if(ef.id?.includes(val)){
+            var elementToScroll = document.getElementById(ef.id);
+            var elementInScroll = document.getElementById('NSI-select-drop-down-menu-itembox');
+            scrollIfNeeded(elementToScroll, elementInScroll);
+        }
+        });
         if (onSearch) {
             onSearch(e.target.value);
         }
@@ -85,11 +115,11 @@ const NestedSelect = ({
     const selecttheCountry = (e: any, c_data?: any) => {
         var array: any | undefined = [];
         if (e.target.checked) {
-            if (checkledValue.length !== 0) {
-                checkledValue?.forEach((element: any) => {
+            if (checkledValues.length !== 0) {
+                checkledValues?.forEach((element: any) => {
                     if (element.code === c_data.code) {
                         element.zones = [...c_data.zones]
-                        array = [...checkledValue]
+                        array = [...checkledValues]
                     } else {
                         const option = {
                             name: c_data.name,
@@ -97,7 +127,7 @@ const NestedSelect = ({
                             zones: c_data.zones,
                             ...c_data
                         }
-                        array = [...checkledValue, option]
+                        array = [...checkledValues, option]
                     }
                 });
             } else {
@@ -107,27 +137,27 @@ const NestedSelect = ({
                     zones: c_data.zones,
                     ...c_data
                 }
-                array = [...checkledValue, option]
+                array = [...checkledValues, option]
             }
         } else {
-            array = checkledValue.filter((item: any) => item.code !== c_data.code)
+            array = checkledValues.filter((item: any) => item.code !== c_data.code)
         }
-        setcheckledValue(array);
+        setcheckledValues(array);
         dataFor = array;
     }
 
     const selecttheState = (e: any, c_data: any, s_state: any) => {
         var array: any | undefined = [];
-        if (checkledValue.length === 0) {
+        if (checkledValues.length === 0) {
             const option = {
                 ...c_data,
                 name: c_data.name,
                 code: c_data.code,
                 zones: [s_state],
             }
-            array = [...checkledValue, option]
+            array = [...checkledValues, option]
         } else {
-            checkledValue?.forEach((element: any) => {
+            checkledValues?.forEach((element: any) => {
                 if (element.code === c_data.code) {
                     var finalResult;
                     var state_present = element.zones.some((item: any) => item.code === s_state.code);
@@ -137,7 +167,7 @@ const NestedSelect = ({
                     } else {
                         element.zones = [...element.zones, s_state]
                     }
-                    array = [...checkledValue];
+                    array = [...checkledValues];
                 } else {
                     const option = {
                         ...c_data,
@@ -145,16 +175,16 @@ const NestedSelect = ({
                         code: c_data.code,
                         zones: [s_state]
                     }
-                    array = [...checkledValue, option]
+                    array = [...checkledValues, option]
                 }
             })
         }
-        setcheckledValue(array);
+        setcheckledValues(array);
         dataFor = array;
     }
 
     const findInselectedarray = (country_code: string, state_code: string) => {
-        let result = checkledValue.some((element: any) => {
+        let result = checkledValues.some((element: any) => {
             if (element.code === country_code) {
                 return element.zones.some((e: any) => e.code === state_code);
             }
@@ -164,7 +194,7 @@ const NestedSelect = ({
 
     const findInselected = (country_data: any) => {
         var result = false;
-        checkledValue.forEach((element: any) => {
+        checkledValues.forEach((element: any) => {
             if (element.code === country_data.code) {
                 result = element.zones.length === country_data.zones.length;
             }
@@ -174,7 +204,7 @@ const NestedSelect = ({
 
     const selectedCount = (code: string) => {
         var result = 0;
-        checkledValue.forEach((ele: any) => {
+        checkledValues.forEach((ele: any) => {
             if (ele.code === code) {
                 result = ele.zones?.length
             }
@@ -204,9 +234,9 @@ const NestedSelect = ({
             />
             {openDropDown &&
                 <div className={`${dropDownClass} NSI-select-drop-down-menu-wrapper`} >
-                    <div className='NSI-select-drop-down-menu-itembox'>
+                    <div className='NSI-select-drop-down-menu-itembox' id="NSI-select-drop-down-menu-itembox">
                         {Countries.map((conti_data: any, index: number) =>
-                            <>
+                            <div key={index}>
                                 {showContinent && <div className='NSI-continent-listitem' id={conti_data.name?.toLowerCase()} key={index}>
                                     <li className='NSI-continent-text'>
                                         {conti_data?.name}
@@ -221,6 +251,7 @@ const NestedSelect = ({
                                                     type="checkbox"
                                                     className='NSI-select-menuitem-checkbox'
                                                     checked={findInselected(c_data)}
+                                                    disabled={disableSelectBox}
                                                     onChange={(e: any) => selecttheCountry(e, c_data)}
                                                 />
                                                 <div>{c_data.name}</div>
@@ -233,13 +264,14 @@ const NestedSelect = ({
                                         </li>
                                         {showState && expandCountry === i && c_data.zones.length > 0 &&
                                             c_data.zones.map((item: any, k: number) =>
-                                                <li className='NSI-select-menuitem-inner-list' key={k} id={item.name?.toLowerCase()} data-id={i}>
+                                                <li className='NSI-select-menuitem-list inner-list' key={k} id={item.name?.toLowerCase()} data-id={i}>
                                                     <div className='NSI-select-menuitem-leading'>
                                                         <input
                                                             type="checkbox"
                                                             onChange={(e: any) => selecttheState(e, c_data, item)}
                                                             checked={findInselectedarray(c_data.code, item.code)}
                                                             className='NSI-select-menuitem-checkbox'
+                                                            // disabled={disableSelectBox}
                                                         /><div>{item.name}</div>
                                                     </div>
                                                     <div>
@@ -248,18 +280,19 @@ const NestedSelect = ({
                                             )}
                                     </div>
                                 )}
-                            </>
+                            </div>
                         )}
                     </div>
                     {showButtonComponent && <>
                         <hr className='NSI-select-drop-down-menu-seperation' />
                         <ActionButton
-                            value={checkledValue}
+                            value={checkledValues}
                             callback={callback ? callback : () => { }}
                             buttonContent={buttonContent}
                             buttonClass={buttonClass}
                             closeDropDown={(val: any) => {
-                                setopenDropDown(val)
+                                setopenDropDown(val);
+                                setsearchValue("");
                             }}
                         />
                     </>
