@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActionButtonProps } from '../types';
+import { ActionButtonProps } from '../typings';
 import './ActionButton.css';
 
 function ActionButton({ 
