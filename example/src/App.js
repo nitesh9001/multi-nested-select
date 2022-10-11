@@ -44,10 +44,10 @@ const App = () => {
       <h1>Multi Nested Select Component</h1>
       <div className='center-component'>
         <NestedSelect
-          buttonContent="Done"
-          enableButton={true}
+          buttonContent="Save Selected"
+          enableButton={false}
           state={true}
-          selectLimit={3}
+          // selectLimit={3}
           continent={true}
           selectedValue={data}
           callback={(val) => callbackFUnction(val)}/>

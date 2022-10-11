@@ -7,6 +7,7 @@ export type moduleProps = {
     continent?: boolean
     callback?: (value: any) => void | undefined
     trailing: boolean
+    leading: boolean
     inputClass?: string
     dropDownClass?: string
     buttonClass?: string

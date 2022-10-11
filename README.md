@@ -12,10 +12,10 @@
 
 A React component which provides multi select functionality for nested option list of continent -> country -> state with various features like selection limit, CSS customization, checkbox, search option, disable preselected values, control nested level keyboard navigation for accessibility and grouping features. Also it has feature to behave like normal dropdown(means single select dropdown).
 
-![alt text](./images/select.png)
-![alt text](./images/select2.png)
-![alt text](./images/select3.png)
-![alt text](./images/select4.png)
+![alt text](./images/ss_4.png)
+![alt text](./images/ss_6.png)
+![alt text](./images/ss_7.png)
+![alt text](./images/ss8.png)
 
 
 ## 🎉🎉 New features in >=1.0.1  

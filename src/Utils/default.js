@@ -2,6 +2,7 @@ export const defaultConfig = {
     buttonContent : "Save Selected",
     callback : (value) => {},
     trailing: true,
+    leading: true,
     selectedValue: [],
     selectLimit: -1,
     inputClass: "NSI-input-box",

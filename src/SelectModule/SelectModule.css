@@ -18,6 +18,7 @@
   padding-left: 5px;
   border: 1px solid #dcdcdc;
   cursor: pointer;
+  padding-left: 30px;
 }
 
 .NSI-continent-listitem{
@@ -28,7 +29,13 @@
   padding: 8px;
   background-color: rgba(234, 234, 234, 0.484);
 }
-
+.NSI-select-input-leading{
+  position: absolute;
+  top: 30%;
+  left: 10px;
+  width: 16px;
+  height: 16px;
+}
 .NSI-continent-text{
   list-style: none;
 }
@@ -56,8 +63,12 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  font-size: 18px;
+  font-size: 14px;
   text-align: left;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  color: #262626;
 }
 
 .NSI-select-menuitem-list.inner-list {
@@ -107,6 +118,7 @@
 .NSI-select-menuitem-trailing-text {
   font-size: 14px;
   color: #8C8C8C;
+  text-transform: capitalize;
 }
 
 .NSI-select-menuitem-trailing {

@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 const { Countries } = require('../Utils/db_country_state.js');
-import Arrow from '../Assets/down-arrow.svg';
 import ActionButton from '../Elements/ActionButton';
 import { moduleProps } from '../typings';
 import './SelectModule.css';
+import Arrow from '../Assets/downarrow.svg';
+import search from '../Assets/search.svg';
 
 const NestedSelect = ({
     buttonContent,
@@ -11,6 +12,7 @@ const NestedSelect = ({
     selectLimit,
     callback,
     trailing,
+    leading,
     state,
     continent,
     inputClass,
@@ -232,6 +234,7 @@ const NestedSelect = ({
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...props}
             />
+            <img src={search} alt="" className='NSI-select-input-leading' />
             {openDropDown &&
                 <div className={`${dropDownClass} NSI-select-drop-down-menu-wrapper`} >
                     <div className='NSI-select-drop-down-menu-itembox' id="NSI-select-drop-down-menu-itembox">
@@ -257,7 +260,7 @@ const NestedSelect = ({
                                                 <div>{c_data.name}</div>
                                             </div>
                                             {(c_data?.zones?.length > 0 && showState) && <div className='NSI-select-menuitem-trailing' onClick={(e: any) => openShow(e, i)} >
-                                                {showTrailing && <span className='NSI-select-menuitem-trailing-text'>{selectedCount(c_data.code)} of {c_data?.zones?.length} Selected</span>}
+                                                {showTrailing && <span className='NSI-select-menuitem-trailing-text'>{selectedCount(c_data.code)} of {c_data?.zones?.length} {c_data?.provinceKey?.toLowerCase()}</span>}
                                                 <img src={Arrow} className={expandCountry === i ? "NSI-select-arrow-collapse-svg" : "NSI-select-arrow-expand-svg"} />
                                             </div>
                                             }
