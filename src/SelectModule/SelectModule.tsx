@@ -230,11 +230,14 @@ const NestedSelect = ({
                 onFocus={(e: any) => {
                     setopenDropDown(true);
                 }}
+                style={leading ? { 
+                   paddingLeft: 30
+                }: {paddingLeft: 10}}
                 onChange={(e: any) => searchCountiresorState(e)}
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...props}
             />
-            <img src={search} alt="" className='NSI-select-input-leading' />
+            {leading && <img src={search} alt="" className='NSI-select-input-leading' />}
             {openDropDown &&
                 <div className={`${dropDownClass} NSI-select-drop-down-menu-wrapper`} >
                     <div className='NSI-select-drop-down-menu-itembox' id="NSI-select-drop-down-menu-itembox">

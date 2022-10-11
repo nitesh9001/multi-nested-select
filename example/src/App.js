@@ -48,6 +48,7 @@ const App = () => {
           enableButton={false}
           state={true}
           // selectLimit={3}
+          leading={true}
           continent={true}
           selectedValue={data}
           callback={(val) => callbackFUnction(val)}/>

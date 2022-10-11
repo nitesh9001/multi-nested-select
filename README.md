@@ -81,6 +81,7 @@ onChange(e_selected) {
 | `width` | `number` | `360` | width of the component to display dropdown.
 | `enableButton` | `bool` | `true` | Make it `false` to hide the button.
 | `trailing` | `bool` | `true` | Make it `false` to hide the trailing message ex- 0 of 24 selected'.
+| `leading` | `bool` | `true` | Make it `false` to hide the leading search icon '.
 | `state` | `bool` | `true` | Option to show or hide the state option list .make it `false` to hide state list.
 | `style` | `object` | `{}` | CSS Customization for multi-nested-select. Refer below object for **css customization.
 | `continent` | `bool` | `true` | Option to show or hide the continent option list .make it `false` to hide continent list.
