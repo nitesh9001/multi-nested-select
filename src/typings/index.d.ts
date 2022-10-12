@@ -8,6 +8,7 @@ export type moduleProps = {
     callback?: (value: any) => void | undefined
     trailing: boolean
     leading: boolean
+    trailingIcon: boolean
     inputClass?: string
     dropDownClass?: string
     buttonClass?: string
@@ -20,7 +21,10 @@ export type moduleProps = {
 export type ActionButtonProps = {
     value: any
     buttonContent?: string
+    setIsLoading: (value: any) => void | undefined
     callback: (value: any) => void | undefined
     buttonClass?: string
     closeDropDown: (value: any) => void | undefined
+    setIsExpand: (value: any) => void | undefined
+    isExpand: boolean
 };

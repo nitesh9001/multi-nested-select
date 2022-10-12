@@ -3,8 +3,8 @@ const { Countries } = require('../Utils/db_country_state.js');
 import ActionButton from '../Elements/ActionButton';
 import { moduleProps } from '../typings';
 import './SelectModule.css';
-import Arrow from '../Assets/downarrow.svg';
-import search from '../Assets/search.svg';
+import Arrow from '../assets/downarrow.svg';
+import search from '../assets/search.svg';
 
 const NestedSelect = ({
     buttonContent,
@@ -12,6 +12,7 @@ const NestedSelect = ({
     selectLimit,
     callback,
     trailing,
+    trailingIcon,
     leading,
     state,
     continent,
@@ -32,16 +33,20 @@ const NestedSelect = ({
     const [showState, setShowState] = useState<boolean>(true);
     const [showContinent, setShowContinent] = useState<boolean>(true);
     const [searchValue, setsearchValue] = useState<string>("");
-    const [checkledValues, setcheckledValues] = useState<any>([]);
+    const [checkedValues, setcheckedValues] = useState<any>([]);
     const [selectItemLimit, setSelectItemLimit] = useState<number>(-1);
     const [disableSelectBox, setDisableSelectBox] = useState<boolean>(false);
+    const [isLoading, setIsloading] = useState(false);
+    const [isLeading, setLeading] = useState<boolean>(true);
+    const [isTrealing, setIstrealing] = useState<boolean>(true);
+    const [isExpand, setIsExpand] = useState<boolean>(false);
 
     var dataFor: any | undefined;
     const ref = useRef<null | any>(null);
 
     useEffect(() => {
         setSelectItemLimit(selectLimit ?? -1);
-        setcheckledValues(selectedValue ??  []);
+        setcheckedValues(selectedValue ??  []);
     },[]);
 
     useEffect(() => {
@@ -57,12 +62,20 @@ const NestedSelect = ({
         if (state !== undefined) {
             setShowState(state);
         }
+        if (leading !== undefined){
+            setLeading(leading);
+        }
+        if (trailingIcon !== undefined){
+            setIstrealing(trailingIcon)
+        }
     }, []);
 
     useEffect(() => {
         const handleClickOutside = (event: any) => {
             if (ref.current && !ref.current.contains(event.target)) {
                 setopenDropDown(false);
+                setIsloading(true);
+                setIsExpand(false);
             }
         };
         document.addEventListener('click', handleClickOutside, true);
@@ -73,11 +86,11 @@ const NestedSelect = ({
 
     useEffect(() => {
         if(selectItemLimit && selectItemLimit > 0 ){
-            if(selectItemLimit <= checkledValues.length){
+            if(selectItemLimit <= checkedValues.length){
                 setDisableSelectBox(true);
             }
         }
-    }, [checkledValues]);
+    }, [checkedValues]);
 
     const openShow = (e: any, i: number) => {
         if (i === expandCountry)
@@ -88,6 +101,7 @@ const NestedSelect = ({
 
     const searchCountiresorState = (e: any) => {
         setsearchValue(e.target.value);
+        setIsloading(false);
         let val = e.target.value?.toLowerCase();
         function scrollIfNeeded(element:any, container:any) {
             if (element.offsetTop < container.scrollTop) {
@@ -117,19 +131,20 @@ const NestedSelect = ({
     const selecttheCountry = (e: any, c_data?: any) => {
         var array: any | undefined = [];
         if (e.target.checked) {
-            if (checkledValues.length !== 0) {
-                checkledValues?.forEach((element: any) => {
+            if (checkedValues.length !== 0) {
+                checkedValues?.forEach((element: any) => {
                     if (element.code === c_data.code) {
                         element.zones = [...c_data.zones]
-                        array = [...checkledValues]
+                        array = [...checkedValues]
                     } else {
                         const option = {
                             name: c_data.name,
                             code: c_data.code,
                             zones: c_data.zones,
+                            count:  c_data.zones?.length,
                             ...c_data
                         }
-                        array = [...checkledValues, option]
+                        array = [...checkedValues, option]
                     }
                 });
             } else {
@@ -137,56 +152,74 @@ const NestedSelect = ({
                     name: c_data.name,
                     code: c_data.code,
                     zones: c_data.zones,
+                    count:  c_data.zones?.length,
                     ...c_data
                 }
-                array = [...checkledValues, option]
+                array = [...checkedValues, option]
             }
         } else {
-            array = checkledValues.filter((item: any) => item.code !== c_data.code)
+            array = checkedValues.filter((item: any) => item.code !== c_data.code)
         }
-        setcheckledValues(array);
+        setcheckedValues(array);
         dataFor = array;
     }
 
-    const selecttheState = (e: any, c_data: any, s_state: any) => {
+    const selecttheState = (e: any, c_data: any, s_state: any, n: number, m: number) => {
         var array: any | undefined = [];
-        if (checkledValues.length === 0) {
+        if (checkedValues.length === 0) {
             const option = {
                 ...c_data,
                 name: c_data.name,
                 code: c_data.code,
+                count:  c_data.zones?.length,
                 zones: [s_state],
             }
-            array = [...checkledValues, option]
+            array = [...checkedValues, option]
         } else {
-            checkledValues?.forEach((element: any) => {
-                if (element.code === c_data.code) {
+            var count=0;
+            checkedValues?.forEach((element: any, sd: number) => {
+                if(element.code === c_data.code) {
                     var finalResult;
+                    var counrtyFilter;
                     var state_present = element.zones.some((item: any) => item.code === s_state.code);
                     if (state_present) {
                         finalResult = element.zones.filter((ele: any) => ele.code !== s_state.code);
                         element.zones = finalResult;
+                        if(!(finalResult?.length > 0))
+                            counrtyFilter = checkedValues.filter((d: any) => element?.code !== d.code);
+                        
                     } else {
                         element.zones = [...element.zones, s_state]
                     }
-                    array = [...checkledValues];
-                } else {
-                    const option = {
-                        ...c_data,
-                        name: c_data.name,
-                        code: c_data.code,
-                        zones: [s_state]
+                    array = counrtyFilter?.length > 0 ? [...counrtyFilter] : [...checkedValues];
+                    // array = [...checkedValues];
+                }
+                else{                   
+                    if(count === 0){
+                        const option = {
+                            ...c_data,
+                            name: c_data.name,
+                            code: c_data.code,
+                            count:  c_data.zones?.length,
+                            zones: [s_state]
+                        }
+                        array = [...checkedValues, option];
+                        count = count+1;
+
                     }
-                    array = [...checkledValues, option]
                 }
             })
         }
-        setcheckledValues(array);
+        // var finalArr = array.filter((it :any) => {
+        //     return it.count !== 0 && it.zones?.length !== 0
+        // });
+        // setcheckedValues([...finalArr]);
+        setcheckedValues([...array]);
         dataFor = array;
     }
 
     const findInselectedarray = (country_code: string, state_code: string) => {
-        let result = checkledValues.some((element: any) => {
+        let result = checkedValues.some((element: any) => {
             if (element.code === country_code) {
                 return element.zones.some((e: any) => e.code === state_code);
             }
@@ -196,7 +229,7 @@ const NestedSelect = ({
 
     const findInselected = (country_data: any) => {
         var result = false;
-        checkledValues.forEach((element: any) => {
+        checkedValues.forEach((element: any) => {
             if (element.code === country_data.code) {
                 result = element.zones.length === country_data.zones.length;
             }
@@ -206,7 +239,7 @@ const NestedSelect = ({
 
     const selectedCount = (code: string) => {
         var result = 0;
-        checkledValues.forEach((ele: any) => {
+        checkedValues.forEach((ele: any) => {
             if (ele.code === code) {
                 result = ele.zones?.length
             }
@@ -220,24 +253,40 @@ const NestedSelect = ({
         }
     };
 
+    const getValue = () => {
+        var strings : string = "";
+        checkedValues?.map((d: any) => {
+            var s : string = d.zones.length > 0 ? `(${d.count} of ${d.zones.length} ${d?.provinceKey?.toLowerCase()}),` : ","
+            strings = `${strings} ${d?.name}${s}`
+        });
+        return strings;
+   }
+
     return (
-        <div className='NSI-main-wrapper' ref={ref} style={{ width: width }} onChange={() => onChangeComp}>
+        <div className='NSI-main-wrapper' ref={ref} style={{ width: width }} onChange={() => onChangeComp()}>
             <input
                 type="text"
-                value={searchValue}
+                value={isLoading ? getValue() : searchValue }
                 placeholder='Select Area'
                 className={`${inputClass} NSI-input-box`}
                 onFocus={(e: any) => {
+                    setIsExpand(true);
                     setopenDropDown(true);
+                    setIsloading(false);
                 }}
-                style={leading ? { 
-                   paddingLeft: 30
-                }: {paddingLeft: 10}}
+                style={isLeading ? { 
+                   paddingLeft: 30,
+                  }: {paddingLeft: 5, paddingRight: 30}
+                }
                 onChange={(e: any) => searchCountiresorState(e)}
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...props}
             />
-            {leading && <img src={search} alt="" className='NSI-select-input-leading' />}
+            {isLeading && <img src={search} alt="" className='NSI-select-input-leading' />}
+            {isTrealing && <img src={Arrow} alt="" className={isExpand ? 'NSI-select-input-trailing' : 'NSI-select-input-trailing-180'} onClick={() => {
+                setIsExpand(!isExpand);
+                setopenDropDown(true);
+            }}/>}
             {openDropDown &&
                 <div className={`${dropDownClass} NSI-select-drop-down-menu-wrapper`} >
                     <div className='NSI-select-drop-down-menu-itembox' id="NSI-select-drop-down-menu-itembox">
@@ -274,7 +323,7 @@ const NestedSelect = ({
                                                     <div className='NSI-select-menuitem-leading'>
                                                         <input
                                                             type="checkbox"
-                                                            onChange={(e: any) => selecttheState(e, c_data, item)}
+                                                            onChange={(e: any) => selecttheState(e, c_data, item, k, i)}
                                                             checked={findInselectedarray(c_data.code, item.code)}
                                                             className='NSI-select-menuitem-checkbox'
                                                             // disabled={disableSelectBox}
@@ -292,7 +341,10 @@ const NestedSelect = ({
                     {showButtonComponent && <>
                         <hr className='NSI-select-drop-down-menu-seperation' />
                         <ActionButton
-                            value={checkledValues}
+                            value={checkedValues}
+                            setIsLoading={setIsloading}
+                            setIsExpand= {setIsExpand}
+                            isExpand ={isExpand}
                             callback={callback ? callback : () => { }}
                             buttonContent={buttonContent}
                             buttonClass={buttonClass}

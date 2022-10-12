@@ -3,6 +3,8 @@ export const defaultConfig = {
     callback : (value) => {},
     trailing: true,
     leading: true,
+    leading: true,
+    trailingIcon: true,
     selectedValue: [],
     selectLimit: -1,
     inputClass: "NSI-input-box",

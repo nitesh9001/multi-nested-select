@@ -13,10 +13,12 @@
 A React component which provides multi select functionality for nested option list of continent -> country -> state with various features like selection limit, CSS customization, checkbox, search option, disable preselected values, control nested level keyboard navigation for accessibility and grouping features. Also it has feature to behave like normal dropdown(means single select dropdown).
 
 
- <img src="./images/ss_4.png" width="200"/>
-<div align="center">
+<div>
   <div style="display: flex;">
+   <img src="./images/ss_4.png" width="200"/>
     <img src="./images/ss_7.png" width="150" />
+  </div>
+  <div style="display: flex;">
     <img src="./images/ss8.png" width="150" /> 
     <img src="./images/ss_6.png" width="150" />
   </div>
@@ -86,7 +88,8 @@ onChange(e_selected) {
 | `width` | `number` | `360` | width of the component to display dropdown.
 | `enableButton` | `bool` | `true` | Make it `false` to hide the button.
 | `trailing` | `bool` | `true` | Make it `false` to hide the trailing message ex- 0 of 24 selected'.
-| `leading` | `bool` | `true` | Make it `false` to hide the leading search icon '.
+| `leading` | `bool` | `true` | Make it `false` to hide the leading icon in search box'.
+| `trailingIcon` | `bool` | `true` | Make it `false` to hide the trailing icon in search box'.
 | `state` | `bool` | `true` | Option to show or hide the state option list .make it `false` to hide state list.
 | `style` | `object` | `{}` | CSS Customization for multi-nested-select. Refer below object for **css customization.
 | `continent` | `bool` | `true` | Option to show or hide the continent option list .make it `false` to hide continent list.

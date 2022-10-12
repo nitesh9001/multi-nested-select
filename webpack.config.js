@@ -11,6 +11,7 @@ module.exports = {
     libraryTarget: "umd",
     umdNamedDefine: true,
   },
+  target: "web",
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx", ".css"],
   },

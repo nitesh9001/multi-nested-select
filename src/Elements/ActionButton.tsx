@@ -5,35 +5,43 @@ import './ActionButton.css';
 function ActionButton({ 
   value,
   callback,
+  setIsLoading,
   buttonContent,
   buttonClass,
-  closeDropDown
+  closeDropDown,
+  setIsExpand,
+  isExpand
 }: ActionButtonProps) {
 
-  const [isLoading, setIsloading] = useState<boolean>(false);
+  const [isLoading, setIsloadingButton] = useState<boolean>(false);
 
   useEffect(() => {
-    if (value.length == 0 ||
+    if (value?.length == 0 ||
       value == null ||
-      value == undefined ||
-      value === []) {
-      setIsloading(true);
+      value == undefined
+      ) {
+        setIsloadingButton(true);
     } else {
-      setIsloading(false);
+      setIsloadingButton(false);
     }
   }, [value]);
 
   const onTrigerSave = () => {
-    if (value.length == 0 ||
+    if (value?.length == 0 ||
       value == null ||
-      value == undefined ||
-      value == []) {
-      setIsloading(true);
+      value == undefined) {
+      setIsloadingButton(true);
       console.log("Nested select :- Please select some value");
     } else {
-      setIsloading(true);
+      setIsloadingButton(true);
       if(callback){
         callback(value);
+        if(setIsLoading){
+          setIsLoading(true);
+        }
+        if(setIsExpand && isExpand){
+          setIsExpand(!isExpand);
+        }
       }
     }
      closeDropDown(false);

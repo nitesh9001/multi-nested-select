@@ -34,7 +34,7 @@ const App = () => {
     }
   }];
   const callbackFUnction = (value) => {
-    console.log(value);
+    console.log("value", value);
     setResponse(value);
   }
   
@@ -45,12 +45,14 @@ const App = () => {
       <div className='center-component'>
         <NestedSelect
           buttonContent="Save Selected"
-          enableButton={false}
+          enableButton={true}
           state={true}
-          // selectLimit={3}
-          leading={true}
-          continent={true}
-          selectedValue={data}
+          // leading={true}
+          // trailing={true}
+          // trailingIcon={true}
+          continent={false}
+          // selectedValue={data}
+          onChange={(v) => console.log("okay", v)}
           callback={(val) => callbackFUnction(val)}/>
       </div>
       <h1>Selected Country-state</h1>

@@ -13,7 +13,7 @@
   height: 40px;
   border-radius: 5px;
   outline: none;
-  font-size: 18px;
+  font-size: 16px;
   text-transform: capitalize;
   padding-left: 5px;
   border: 1px solid #dcdcdc;
@@ -34,6 +34,25 @@
   left: 10px;
   width: 16px;
   height: 16px;
+}
+.NSI-select-input-trailing{
+  position: absolute;
+  right: -32px;
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  padding: 12px;
+  top: 2px;
+}
+.NSI-select-input-trailing-180{
+  position: absolute;
+  transform: rotateZ(180deg);
+  top: 2px;
+  right: -32px;
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  padding: 12px;
 }
 .NSI-continent-text{
   list-style: none;
@@ -78,7 +97,7 @@
   justify-content: space-between;
   margin-left: 20px;
   align-items: center;
-  font-size: 18px;
+  font-size: 14px;
   text-align: left;
 }
 
@@ -155,7 +174,7 @@
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   border-radius: 5px;
   padding: 8px;
-  width: 98% ;
+  width: 104% ;
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px,
     rgb(0 0 0 / 14%) 0px 1px 1px 0px,
     rgb(0 0 0 / 12%) 0px 1px 3px 0px;
