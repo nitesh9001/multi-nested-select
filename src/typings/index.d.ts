@@ -2,6 +2,7 @@
 export type moduleProps = {
     buttonContent?: string
     selectedValue?: any
+    showDefaultValue?: boolean
     selectLimit?: undefined | number
     state?: boolean
     continent?: boolean

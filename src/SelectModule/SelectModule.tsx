@@ -9,6 +9,7 @@ import search from '../assets/search.svg';
 const NestedSelect = ({
     buttonContent,
     selectedValue,
+    showDefaultValue,
     selectLimit,
     callback,
     trailing,
@@ -290,7 +291,7 @@ const NestedSelect = ({
             {openDropDown &&
                 <div className={`${dropDownClass} NSI-select-drop-down-menu-wrapper`} >
                     <div className='NSI-select-drop-down-menu-itembox' id="NSI-select-drop-down-menu-itembox">
-                        {Countries.map((conti_data: any, index: number) =>
+                        {Countries(showDefaultValue, selectedValue).map((conti_data: any, index: number) =>
                             <div key={index}>
                                 {showContinent && <div className='NSI-continent-listitem' id={conti_data.name?.toLowerCase()} key={index}>
                                     <li className='NSI-continent-text'>

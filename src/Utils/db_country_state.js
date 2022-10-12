@@ -1,4 +1,21 @@
-export const Countries =[
+export const Countries = (show, arrayDefault) => {
+    var finalArray = []
+    arrayDefault?.forEach(element => {
+            const dObj = {"name": element?.continent, countries: [element]}
+            finalArray.push(dObj);
+    });
+    const result = finalArray.reduce((acc, {name, countries}) => {
+        acc[name] ??= {name: name, countries: []};
+        if(Array.isArray(countries)) // if it's array type then concat 
+          acc[name].countries = acc[name].countries.concat(countries);
+        else
+          acc[name].value.push(countries);
+        return acc;
+      }, {});
+
+    finalArray = Object.values(result)
+    
+    return show ? finalArray : [
     {
         "name": "Asia",
         "countries": [
@@ -11036,4 +11053,5 @@ export const Countries =[
             }
         ]
     }
-]
+    ];
+}
