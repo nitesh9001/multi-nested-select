@@ -8,6 +8,9 @@ export type moduleProps = {
     continent?: boolean
     callback?: (value: any) => void | undefined
     trailing: boolean
+    height?: string
+    placeholderCtx?: boolean
+    chip?: boolean
     leading: boolean
     trailingIcon: boolean
     inputClass?: string
@@ -15,7 +18,7 @@ export type moduleProps = {
     buttonClass?: string
     enableButton?: boolean
     onChange?: (value: any) => void | undefined
-    width: string
+    width?: string
     onSearch?: (value: string) => void | undefined
 }
 

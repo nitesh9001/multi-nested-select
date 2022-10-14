@@ -618,9 +618,13 @@ const App = () => {
           buttonContent="Save Selected"
           enableButton={true}
           state={true}
-          // leading={true}
-          // trailing={true}
-          // trailingIcon={true}
+          width={350}
+          height={300}
+          leading={true}
+          chip={true}
+          placeholderCtx={true}
+          trailing={true}
+          trailingIcon={true}
           continent={false}
           showDefaultValue={false}
           selectedValue={data}

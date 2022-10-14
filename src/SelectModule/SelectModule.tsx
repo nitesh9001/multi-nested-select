@@ -24,6 +24,9 @@ const NestedSelect = ({
     enableButton,
     onChange,
     onSearch,
+    height,
+    placeholderCtx,
+    chip,
     ...props
 }: moduleProps) => {
 
@@ -39,8 +42,10 @@ const NestedSelect = ({
     const [disableSelectBox, setDisableSelectBox] = useState<boolean>(false);
     const [isLoading, setIsloading] = useState(false);
     const [isLeading, setLeading] = useState<boolean>(true);
-    const [isTrealing, setIstrealing] = useState<boolean>(true);
+    const [isTrailing, setIsTrailing] = useState<boolean>(true);
     const [isExpand, setIsExpand] = useState<boolean>(false);
+    const [placeholder, setPlaceholder] = useState<boolean>(true);
+    const [isChip, setIschip] = useState<boolean>(false);
 
     var dataFor: any | undefined;
     const ref = useRef<null | any>(null);
@@ -67,7 +72,13 @@ const NestedSelect = ({
             setLeading(leading);
         }
         if (trailingIcon !== undefined){
-            setIstrealing(trailingIcon)
+            setIsTrailing(trailingIcon)
+        }
+        if (placeholderCtx !== undefined){
+            setPlaceholder(placeholderCtx);
+        }
+        if (chip !== undefined){
+            setIschip(chip)
         }
     }, []);
 
@@ -254,43 +265,63 @@ const NestedSelect = ({
         }
     };
 
-    const getValue = () => {
+    const getValue = (ctx: any) => {
         var strings : string = "";
-        checkedValues?.map((d: any) => {
-            var s : string = d.zones.length > 0 ? `(${d.count} of ${d.zones.length} ${d?.provinceKey?.toLowerCase()}),` : ","
-            strings = `${strings} ${d?.name}${s}`
-        });
+        if(ctx){
+            checkedValues?.map((d: any) => {
+                var s : string = d.zones.length > 0 ? `(${d.count} of ${d.zones.length} ${d?.provinceKey?.toLowerCase()}),` : ","
+                strings = `${strings} ${d?.name}${s}`
+            });
+        }
         return strings;
    }
 
     return (
         <div className='NSI-main-wrapper' ref={ref} style={{ width: width }} onChange={() => onChangeComp()}>
-            <input
-                type="text"
-                value={isLoading ? getValue() : searchValue }
-                placeholder='Select Area'
-                className={`${inputClass} NSI-input-box`}
-                onFocus={(e: any) => {
-                    setIsExpand(true);
-                    setopenDropDown(true);
-                    setIsloading(false);
-                }}
-                style={isLeading ? { 
-                   paddingLeft: 30,
-                  }: {paddingLeft: 5, paddingRight: 30}
-                }
-                onChange={(e: any) => searchCountiresorState(e)}
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                {...props}
-            />
-            {isLeading && <img src={search} alt="" className='NSI-select-input-leading' />}
-            {isTrealing && <img src={Arrow} alt="" className={isExpand ? 'NSI-select-input-trailing' : 'NSI-select-input-trailing-180'} onClick={() => {
-                setIsExpand(!isExpand);
-                setopenDropDown(true);
-            }}/>}
-            {openDropDown &&
+            <div className='NSI-input-box-wrap'>
+             {isChip && <div>
+             { checkedValues?.length  > 0 && 
+             <div className="NSI-main-overlap-nested"> 
+              {checkedValues?.map((item: any, i:number) => i < 5 && <span className="NSI-main-chipicons-label">
+                    {item.name} 
+                    {item.zones.length > 0 && 
+                        <>
+                         ({item.zones.length} of {item.zones.length??"1"} {item?.provinceKey?.toLowerCase()})
+                        </>
+                    } {" "}
+              </span>
+              )}
+             {checkedValues?.length  > 5 && <span className="NSI-main-more-trailing">+ {checkedValues?.length - 5} more</span>}
+              </div>
+            }
+             </div>
+             }
+             <div className='NSI-main-input-flex-box'>
+                {isLeading && <img src={search} alt="" className='NSI-select-input-leading' />}
+                <input
+                    type="text"
+                    value={isLoading ? getValue(placeholder) : searchValue }
+                    placeholder='Select Area'
+                    className={`${inputClass} NSI-input-box`}
+                    onFocus={(e: any) => {
+                        setIsExpand(true);
+                        setopenDropDown(true);
+                        setIsloading(false);
+                    }}
+                    onChange={(e: any) => searchCountiresorState(e)}
+                    // eslint-disable-next-line react/jsx-props-no-spreading
+                    {...props}
+                />
+                {isTrailing && <img src={Arrow} alt="" className={isExpand ? 'NSI-select-input-trailing' : 'NSI-select-input-trailing-180'} onClick={() => {
+                    setIsExpand(!isExpand);
+                    setopenDropDown(!openDropDown);
+                }}/>}
+             </div>
+             </div>
+             <div style={{paddingTop: 5}}>
+             {openDropDown &&
                 <div className={`${dropDownClass} NSI-select-drop-down-menu-wrapper`} >
-                    <div className='NSI-select-drop-down-menu-itembox' id="NSI-select-drop-down-menu-itembox">
+                    <div className='NSI-select-drop-down-menu-itembox' id="NSI-select-drop-down-menu-itembox" style={{ height: height}}>
                         {Countries(showDefaultValue, selectedValue).map((conti_data: any, index: number) =>
                             <div key={index}>
                                 {showContinent && <div className='NSI-continent-listitem' id={conti_data.name?.toLowerCase()} key={index}>
@@ -358,6 +389,7 @@ const NestedSelect = ({
                     }
                 </div>
             }
+             </div>
         </div>
     )
 }

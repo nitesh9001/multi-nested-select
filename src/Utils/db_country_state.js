@@ -5,7 +5,7 @@ export const Countries = (show, arrayDefault) => {
             finalArray.push(dObj);
     });
     const result = finalArray.reduce((acc, {name, countries}) => {
-        acc[name] ??= {name: name, countries: []};
+        acc[name] = {name: name, countries: []};
         if(Array.isArray(countries)) // if it's array type then concat 
           acc[name].countries = acc[name].countries.concat(countries);
         else
