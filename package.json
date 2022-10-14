@@ -1,6 +1,6 @@
 {
   "name": "multi-nested-select",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "multi-nested-select package",
   "main": "dist/index.js",
   "typings": "dist/types/index.d.ts",

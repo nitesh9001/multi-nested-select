@@ -5,28 +5,32 @@ import { moduleProps } from '../typings';
 import './SelectModule.css';
 import Arrow from '../assets/downarrow.svg';
 import search from '../assets/search.svg';
+import Close from '../assets/close.svg';
 
 const NestedSelect = ({
     buttonContent,
     selectedValue,
     showDefaultValue,
     selectLimit,
-    callback,
     trailing,
     trailingIcon,
     leading,
     state,
     continent,
-    inputClass,
-    dropDownClass,
-    buttonClass,
     width,
     enableButton,
-    onChange,
-    onSearch,
     height,
     placeholderCtx,
     chip,
+    chipCount,
+    inputClass,
+    dropDownClass,
+    buttonClass,
+    callback,
+    onChange,
+    onSearch,
+    onViewmore,
+    onChipDelete,
     ...props
 }: moduleProps) => {
 
@@ -46,6 +50,7 @@ const NestedSelect = ({
     const [isExpand, setIsExpand] = useState<boolean>(false);
     const [placeholder, setPlaceholder] = useState<boolean>(true);
     const [isChip, setIschip] = useState<boolean>(false);
+    const [chipNoCount, setChipNoCount] = useState<number>(5);
 
     var dataFor: any | undefined;
     const ref = useRef<null | any>(null);
@@ -79,6 +84,9 @@ const NestedSelect = ({
         }
         if (chip !== undefined){
             setIschip(chip)
+        }
+        if (chipCount !== undefined){
+            setChipNoCount(chipCount);
         }
     }, []);
 
@@ -274,24 +282,37 @@ const NestedSelect = ({
             });
         }
         return strings;
-   }
+    }
 
+    const chipDelete = (obj: any) => {
+        if(onChipDelete){
+            onChipDelete(obj);
+        }
+        var array = checkedValues.filter((item: any) => item.code !== obj.code);
+        setcheckedValues(array);
+        dataFor = array;
+    }
     return (
         <div className='NSI-main-wrapper' ref={ref} style={{ width: width }} onChange={() => onChangeComp()}>
-            <div className='NSI-input-box-wrap'>
+            <div className={`${inputClass} NSI-input-box-wrap`}>
              {isChip && <div>
              { checkedValues?.length  > 0 && 
              <div className="NSI-main-overlap-nested"> 
-              {checkedValues?.map((item: any, i:number) => i < 5 && <span className="NSI-main-chipicons-label">
+              {checkedValues?.map((item: any, i:number) => i < chipNoCount && <span className="NSI-main-chipicons-label">
                     {item.name} 
                     {item.zones.length > 0 && 
                         <>
                          ({item.zones.length} of {item.zones.length??"1"} {item?.provinceKey?.toLowerCase()})
                         </>
                     } {" "}
+                    <img src={Close} style={{width: 8, marginLeft: 4, cursor: "pointer"}} onClick={() => chipDelete(item)}/>
               </span>
               )}
-             {checkedValues?.length  > 5 && <span className="NSI-main-more-trailing">+ {checkedValues?.length - 5} more</span>}
+             {checkedValues?.length  > chipNoCount && <span className="NSI-main-more-trailing" onClick={() => {
+                if(onViewmore){
+                 onViewmore(checkedValues);
+                }
+             }}>+ {checkedValues?.length - chipNoCount} more</span>}
               </div>
             }
              </div>
@@ -302,7 +323,7 @@ const NestedSelect = ({
                     type="text"
                     value={isLoading ? getValue(placeholder) : searchValue }
                     placeholder='Select Area'
-                    className={`${inputClass} NSI-input-box`}
+                    className='NSI-input-box'
                     onFocus={(e: any) => {
                         setIsExpand(true);
                         setopenDropDown(true);

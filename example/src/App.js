@@ -618,18 +618,23 @@ const App = () => {
           buttonContent="Save Selected"
           enableButton={true}
           state={true}
-          width={350}
-          height={300}
+          width={450}
+          height={200}
           leading={true}
           chip={true}
           placeholderCtx={true}
           trailing={true}
           trailingIcon={true}
+          inputClass="myCustom_text"
           continent={false}
           showDefaultValue={false}
           selectedValue={data}
+        //   style={{background : "red"}}
+          onViewmore={(v) => alert("viewed")}
+          onChipDelete={(v) => alert("deleted")}
           onChange={(v) => console.log("okay", v)}
-          callback={(val) => callbackFUnction(val)}/>
+          callback={(val) => callbackFUnction(val)}
+          />
       </div>
       <h1>Selected Country-state</h1>
       <p>**(Not part of package only for showing response getting from package)</p>

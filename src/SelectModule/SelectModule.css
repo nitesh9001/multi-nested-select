@@ -7,12 +7,14 @@
 }
 .NSI-main-overlap-nested{
   margin: 0px;
-  width: 100%;
+  width: 98%;
   display: flex;
   flex-direction: row;
+  align-items: baseline;
   justify-content: flex-start;
   flex-wrap: wrap;
   padding: 6px;
+  padding-left: 0px;
 }
 
 .NSI-main-more-trailing{
@@ -20,6 +22,7 @@
   font-weight: 700;
   font-size: 12px;
   line-height: 20px;
+  cursor: pointer;
   text-decoration-line: underline;
   color: #595959;
 }
@@ -29,7 +32,7 @@
   font-size: 12px;
   line-height: 20px;
   color: #595959;
-  background: #E8E8E8;
+  background: #f4f4f4;
   border-radius: 0px;
   margin-right: 5px; 
   margin-bottom: 5px;
@@ -47,7 +50,6 @@
   text-transform: capitalize;
   padding-left: 5px;
   border: 1px solid #dcdcdc;
-  cursor: pointer;
   background-color: white;
 }
 .NSI-main-input-flex-box{
@@ -63,7 +65,8 @@
   height: 40px;
   cursor: pointer;
   outline: none;
-  background: transparent !important;
+  padding-right: 10px;
+  background: transparent;
 }
 .NSI-continent-listitem{
   font-size: 18px;

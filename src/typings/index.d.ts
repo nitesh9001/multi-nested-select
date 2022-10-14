@@ -6,29 +6,33 @@ export type moduleProps = {
     selectLimit?: undefined | number
     state?: boolean
     continent?: boolean
-    callback?: (value: any) => void | undefined
     trailing: boolean
     height?: string
     placeholderCtx?: boolean
     chip?: boolean
+    chipCount?: number
     leading: boolean
     trailingIcon: boolean
     inputClass?: string
     dropDownClass?: string
     buttonClass?: string
     enableButton?: boolean
-    onChange?: (value: any) => void | undefined
     width?: string
+    onChange?: (value: any) => void | undefined
+    onChipDelete?: (value: any) => void | undefined
+    onViewmore?: (value: any) => void | undefined
+    callback?: (value: any) => void | undefined
     onSearch?: (value: string) => void | undefined
 }
 
 export type ActionButtonProps = {
     value: any
     buttonContent?: string
+    isExpand: boolean
+    buttonClass?: string
     setIsLoading: (value: any) => void | undefined
     callback: (value: any) => void | undefined
-    buttonClass?: string
     closeDropDown: (value: any) => void | undefined
     setIsExpand: (value: any) => void | undefined
-    isExpand: boolean
+    
 };
