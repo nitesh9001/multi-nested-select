@@ -65,6 +65,7 @@ onChange(e_selected) {
     enableButton={true}  // To show or hide the button 
     state={true}         // show the nested level state 
     continent={true}     // show and hide the continent 
+    chip={true}          // show and hide the chip 
     onChange={(val) => onChange(val)}  // while adding/removing this onchange will call
     callback={(val) => callbackFunction(val)}  //on submit or save button callback()
 />
@@ -165,6 +166,10 @@ This package is build with typescript, react js and webpack .
 Contributions are welcome, please open an issue and preferrably file a pull request.
 
 Opening Issue Please share sample code using codesandbox.com or stackblitz.com to help me re-produce the issue.
+
+
+<a href="https://www.buymeacoffee.com/niteshsingY" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 
 ## 11. Playground
 https://codesandbox.io/s/multi-select-nested-options-5eyyu4?file=/src/App.js
