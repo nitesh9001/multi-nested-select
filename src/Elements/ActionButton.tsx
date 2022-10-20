@@ -10,7 +10,10 @@ function ActionButton({
   buttonClass,
   closeDropDown,
   setIsExpand,
-  isExpand
+  isExpand,
+  chipExpandView,
+  setChipNoCount,
+  chipCount
 }: ActionButtonProps) {
 
   const [isLoading, setIsloadingButton] = useState<boolean>(false);
@@ -42,6 +45,11 @@ function ActionButton({
         if(setIsExpand && isExpand){
           setIsExpand(!isExpand);
         }
+        if(chipExpandView){
+          if(chipCount){
+              setChipNoCount(chipCount);
+          }
+      }
       }
     }
      closeDropDown(false);

@@ -10,7 +10,7 @@ import Close from '../assets/close.svg';
 const NestedSelect = ({
     buttonContent,
     selectedValue,
-    showDefaultValue,
+    showCustomList,
     selectLimit,
     trailing,
     trailingIcon,
@@ -23,9 +23,13 @@ const NestedSelect = ({
     placeholderCtx,
     chip,
     chipCount,
+    expandChip,
+    omitSelected,
     inputClass,
     dropDownClass,
     buttonClass,
+    error,
+    helperText,
     callback,
     onChange,
     onSearch,
@@ -51,7 +55,10 @@ const NestedSelect = ({
     const [placeholder, setPlaceholder] = useState<boolean>(true);
     const [isChip, setIschip] = useState<boolean>(false);
     const [chipNoCount, setChipNoCount] = useState<number>(5);
-
+    const [chipExpandView, setChipExpandview] = useState<boolean>(false);
+    const [omitSelectedCloseDropDown, setOmitSelected] = useState<boolean>(false);
+    const [toggleView, setToggleView] = useState<boolean>(false);
+    // const [erroView, setErrorView] = useState<boolean>(false);
     var dataFor: any | undefined;
     const ref = useRef<null | any>(null);
 
@@ -88,6 +95,12 @@ const NestedSelect = ({
         if (chipCount !== undefined){
             setChipNoCount(chipCount);
         }
+        if(omitSelected !== undefined){
+            setOmitSelected(omitSelected);
+        }
+        if(expandChip !== undefined){
+            setChipExpandview(expandChip)
+        }
     }, []);
 
     useEffect(() => {
@@ -96,6 +109,18 @@ const NestedSelect = ({
                 setopenDropDown(false);
                 setIsloading(true);
                 setIsExpand(false);
+                if(omitSelectedCloseDropDown){
+                    if(selectedValue?.length > 0){
+                        setcheckedValues(selectedValue);
+                    }else{
+                       setcheckedValues([]);
+                    }
+                }
+                if(chipExpandView){
+                    if(chipCount){
+                        setChipNoCount(chipCount);
+                    }
+                }
             }
         };
         document.addEventListener('click', handleClickOutside, true);
@@ -294,7 +319,7 @@ const NestedSelect = ({
     }
     return (
         <div className='NSI-main-wrapper' ref={ref} style={{ width: width }} onChange={() => onChangeComp()}>
-            <div className={`${inputClass} NSI-input-box-wrap`}>
+            <div className={`${inputClass} NSI-input-box-wrap`} style={{borderColor: error ? "red" : ""}}>
              {isChip && <div>
              { checkedValues?.length  > 0 && 
              <div className="NSI-main-overlap-nested"> 
@@ -308,11 +333,15 @@ const NestedSelect = ({
                     <img src={Close} style={{width: 8, marginLeft: 4, cursor: "pointer"}} onClick={() => chipDelete(item)}/>
               </span>
               )}
-             {checkedValues?.length  > chipNoCount && <span className="NSI-main-more-trailing" onClick={() => {
+             {(checkedValues?.length > chipNoCount) && chipExpandView && <span className="NSI-main-more-trailing" onClick={() => {
                 if(onViewmore){
-                 onViewmore(checkedValues);
+                //   setToggleView(!toggleView);
+                  onViewmore(checkedValues);
                 }
-             }}>+ {checkedValues?.length - chipNoCount} more</span>}
+                if(chipExpandView){
+                    setChipNoCount(checkedValues?.length)
+                }
+             }}>{!toggleView ? `+ ${checkedValues?.length - chipNoCount} more`: "Less"}</span>}
               </div>
             }
              </div>
@@ -339,11 +368,12 @@ const NestedSelect = ({
                 }}/>}
              </div>
              </div>
+             {helperText && <p className={error ? 'NSI-main-input-helper-text NSI-error-text': 'NSI-main-input-helper-text'}>{helperText}</p>}
              <div style={{paddingTop: 5}}>
              {openDropDown &&
                 <div className={`${dropDownClass} NSI-select-drop-down-menu-wrapper`} >
                     <div className='NSI-select-drop-down-menu-itembox' id="NSI-select-drop-down-menu-itembox" style={{ height: height}}>
-                        {Countries(showDefaultValue, selectedValue).map((conti_data: any, index: number) =>
+                        {Countries(showCustomList).map((conti_data: any, index: number) =>
                             <div key={index}>
                                 {showContinent && <div className='NSI-continent-listitem' id={conti_data.name?.toLowerCase()} key={index}>
                                     <li className='NSI-continent-text'>
@@ -398,6 +428,9 @@ const NestedSelect = ({
                             setIsLoading={setIsloading}
                             setIsExpand= {setIsExpand}
                             isExpand ={isExpand}
+                            chipExpandView={chipExpandView}
+                            chipCount={chipCount}
+                            setChipNoCount={setChipNoCount}
                             callback={callback ? callback : () => { }}
                             buttonContent={buttonContent}
                             buttonClass={buttonClass}

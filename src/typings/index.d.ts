@@ -2,15 +2,17 @@
 export type moduleProps = {
     buttonContent?: string
     selectedValue?: any
-    showDefaultValue?: boolean
+    showCustomList?: any
     selectLimit?: undefined | number
     state?: boolean
     continent?: boolean
     trailing: boolean
     height?: string
+    omitSelected?: boolean
     placeholderCtx?: boolean
     chip?: boolean
     chipCount?: number
+    expandChip?: boolean
     leading: boolean
     trailingIcon: boolean
     inputClass?: string
@@ -18,6 +20,8 @@ export type moduleProps = {
     buttonClass?: string
     enableButton?: boolean
     width?: string
+    error?: boolean
+    helperText? : string
     onChange?: (value: any) => void | undefined
     onChipDelete?: (value: any) => void | undefined
     onViewmore?: (value: any) => void | undefined
@@ -27,9 +31,12 @@ export type moduleProps = {
 
 export type ActionButtonProps = {
     value: any
+    chipExpandView?: boolean
+    chipCount?: number
     buttonContent?: string
     isExpand: boolean
     buttonClass?: string
+    setChipNoCount: (value: any) => void | undefined
     setIsLoading: (value: any) => void | undefined
     callback: (value: any) => void | undefined
     closeDropDown: (value: any) => void | undefined
