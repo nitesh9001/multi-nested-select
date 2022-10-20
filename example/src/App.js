@@ -608,6 +608,7 @@ const App = () => {
     console.log("value", value);
     setResponse(value);
   }
+
   
   return (
     <div className="App">
@@ -621,14 +622,19 @@ const App = () => {
           width={450}
           height={200}
           leading={true}
-          chip={true}
-          placeholderCtx={true}
+        //   chip={true}
+        //   chipCount={5}
+        //   error={erTg}
+        //   helperText="error occured"
+          placeholderCtx={false}
           trailing={true}
           trailingIcon={true}
           inputClass="myCustom_text"
           continent={false}
-          showDefaultValue={false}
-          selectedValue={data}
+          omitSelected={true}
+          expandChip={true}
+          selectedValue={data.slice(0,4)}
+        //   showCustomList={data}
         //   style={{background : "red"}}
           onViewmore={(v) => alert("viewed")}
           onChipDelete={(v) => alert("deleted")}

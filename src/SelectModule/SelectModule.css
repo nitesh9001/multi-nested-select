@@ -39,6 +39,19 @@
   padding: 2px 5px;
   border-radius: 3px;
 }
+.NSI-main-input-helper-text{
+  font-size: 14px;
+  color: black;
+  text-transform: capitalize;
+  text-align: left;
+  padding-top: 0px;
+  line-height: 12px;
+  margin: 1px;
+  margin-top: 4px;
+}
+.NSI-error-text{
+  color: red;
+}
 .NSI-input-box-wrap {
   position: relative;
   width: 100%;

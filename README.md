@@ -86,8 +86,12 @@ onChange(e_selected) {
 | `onChipDelete` | `function` | `(val) => {}` | Callback function will invoked on deletion of chip. (only when `chip` is true).
 | `disabled` | `boolean` | `false` | Make it `true` to disable the select input feild.
 | `selectedValue` | `array` | `[]` | Default value to persist in dropdown
-| `showDefaultValue` | `bool` | `false` | Dropdown array list according to selectedValue only (It will only show selectedValue in dropdown)
+| `showCustomList` | `array` | `[]` | Dropdown array list according to showCustomList.
+| `error` | `bool` | `false` | To display error on input field.
+| `helperText` | `string` | `""` | To display the helper text for input.
+| `expandChip` | `bool` | `true` | To display chip expand and collapse option
 | `showCheckbox` | `bool` | `true` | To display checkbox option in the dropdown
+| `omitSelected` | `bool` | `false` | To unselect the selected when clicked outside of dropdown. 
 | `selectLimit` | `number` | `-1` | You can limit the number of items that can be selected in a dropdown
 | `placeholder` | `string` | `Select Area` | Placeholder text
 | `buttonContent` | `string` | `Save Selected` | To display the button text content`

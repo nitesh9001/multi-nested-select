@@ -1,6 +1,11 @@
 export const defaultConfig = {
+    selectedValue: [],
+    showCustomList: [],
+    omitSelected: false,
+    expandChip: false,
+    error: false,
+    helperText : "",
     buttonContent : "Save Selected",
-    callback : (value) => {},
     trailing: true,
     leading: true,
     leading: true,
@@ -12,10 +17,13 @@ export const defaultConfig = {
     buttonClass: "NSI-select-drop-down-menu-button",
     width: 360,
     enableButton: true,
-    onChange: (value) => {}, // only when enableButton : false
-    onSearch: (s_sting) => {},
     disabled: false,
     state: true,
     continent: true,
+    onChipDelet: (value) => {},
+    onViewmore: (value) => {},
+    callback : (value) => {},
+    onChange: (value) => {}, // only when enableButton : false
+    onSearch: (s_sting) => {},
     ...props
 }
