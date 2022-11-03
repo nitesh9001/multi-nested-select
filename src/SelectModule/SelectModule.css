@@ -127,7 +127,7 @@
 }
 
 .NSI-select-drop-down-menu-itembox::-webkit-scrollbar-track{
-  background: red;
+  background: transparent;
 }
 
 .NSI-select-menuitem-list {
@@ -205,6 +205,7 @@
 .NSI-select-arrow-expand-svg {
   transform: rotateZ(180deg);
   zoom: 1.2;
+  padding: 5px;
   cursor: pointer;
   margin: 0px 5px;
 }
@@ -212,6 +213,7 @@
 .NSI-select-arrow-collapse-svg {
   zoom: 1.2;
   cursor: pointer;
+  padding: 5px;
   margin: 0px 5px;
 }
 
