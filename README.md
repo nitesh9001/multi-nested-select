@@ -168,7 +168,7 @@ Contributions are welcome, please open an issue and preferrably file a pull requ
 Opening Issue Please share sample code using codesandbox.com or stackblitz.com to help me re-produce the issue.
 
 
-<a href="https://www.buymeacoffee.com/niteshsingY" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+<!-- <a href="https://www.buymeacoffee.com/niteshsingY" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a> -->
 
 
 ## 11. Playground

@@ -4,25 +4,23 @@ import './ActionButton.css';
 
 function ActionButton({ 
   value,
-  callback,
-  setIsLoading,
-  buttonContent,
-  buttonClass,
-  closeDropDown,
-  setIsExpand,
+  disable,
+  chipCount,
   isExpand,
+  buttonClass,
+  buttonContent,
   chipExpandView,
+  callback,
+  setIsExpand,
+  setIsLoading,
+  closeDropDown,
   setChipNoCount,
-  chipCount
 }: ActionButtonProps) {
 
   const [isLoading, setIsloadingButton] = useState<boolean>(false);
 
   useEffect(() => {
-    if (value?.length == 0 ||
-      value == null ||
-      value == undefined
-      ) {
+    if (disable && disable == true) {
         setIsloadingButton(true);
     } else {
       setIsloadingButton(false);

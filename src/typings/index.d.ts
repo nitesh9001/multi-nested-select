@@ -21,7 +21,9 @@ export type moduleProps = {
     enableButton?: boolean
     width?: string
     error?: boolean
+    disable?: boolean
     helperText? : string
+    selectAllOption?: boolean
     onChange?: (value: any) => void | undefined
     onChipDelete?: (value: any) => void | undefined
     onViewmore?: (value: any) => void | undefined
@@ -36,6 +38,7 @@ export type ActionButtonProps = {
     buttonContent?: string
     isExpand: boolean
     buttonClass?: string
+    disable?: boolean
     setChipNoCount: (value: any) => void | undefined
     setIsLoading: (value: any) => void | undefined
     callback: (value: any) => void | undefined

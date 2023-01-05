@@ -1,4 +1,4 @@
-export const Countries = (arrayDefault, showContinent) => {
+export var Countries = (arrayDefault, showContinent) => {
     var finalArray = [];
     if(showContinent !== true){
         if(arrayDefault?.length > 0){
@@ -213,7 +213,7 @@ export const Countries = (arrayDefault, showContinent) => {
                   postalCode: "Postal code",
                   zone: "Region"
                 },
-                name: "Antigua &amp; Barbuda",
+                name: "Antigua & Barbuda",
                 optionalLabels: {
                   address2: "Apartment, suite, etc. (optional)"
                 },
@@ -822,7 +822,7 @@ export const Countries = (arrayDefault, showContinent) => {
                   postalCode: "Postal code",
                   zone: "Region"
                 },
-                name: "Bosnia &amp; Herzegovina",
+                name: "Bosnia & Herzegovina",
                 optionalLabels: {
                   address2: "Apartment, suite, etc. (optional)"
                 },
@@ -1736,7 +1736,7 @@ export const Countries = (arrayDefault, showContinent) => {
                 name: "Risaralda"
               }, {
                 code: "SAP",
-                name: "San Andrés &amp; Providencia"
+                name: "San Andrés & Providencia"
               }, {
                 code: "SAN",
                 name: "Santander"
@@ -7230,7 +7230,7 @@ export const Countries = (arrayDefault, showContinent) => {
                   postalCode: "Postal code",
                   zone: "Region"
                 },
-                name: "São Tomé &amp; Príncipe",
+                name: "São Tomé & Príncipe",
                 optionalLabels: {
                   address2: "Apartment, suite, etc. (optional)"
                 },
@@ -7608,7 +7608,7 @@ export const Countries = (arrayDefault, showContinent) => {
                   postalCode: "Postal code",
                   zone: "Region"
                 },
-                name: "South Georgia &amp; South Sandwich Islands",
+                name: "South Georgia & South Sandwich Islands",
                 optionalLabels: {
                   address2: "Apartment, suite, etc. (optional)"
                 },
@@ -8004,7 +8004,7 @@ export const Countries = (arrayDefault, showContinent) => {
                   postalCode: "Postal code",
                   zone: "Region"
                 },
-                name: "St. Kitts &amp; Nevis",
+                name: "St. Kitts & Nevis",
                 optionalLabels: {
                   address2: "Apartment, suite, etc. (optional)"
                 },
@@ -8085,7 +8085,7 @@ export const Countries = (arrayDefault, showContinent) => {
                   postalCode: "Postal code",
                   zone: "Region"
                 },
-                name: "St. Pierre &amp; Miquelon",
+                name: "St. Pierre & Miquelon",
                 optionalLabels: {
                   address2: "Apartment, suite, etc. (optional)"
                 },
@@ -8112,7 +8112,7 @@ export const Countries = (arrayDefault, showContinent) => {
                   postalCode: "Postal code",
                   zone: "Region"
                 },
-                name: "St. Vincent &amp; Grenadines",
+                name: "St. Vincent & Grenadines",
                 optionalLabels: {
                   address2: "Apartment, suite, etc. (optional)"
                 },
@@ -8193,7 +8193,7 @@ export const Countries = (arrayDefault, showContinent) => {
                   postalCode: "Postal code",
                   zone: "Region"
                 },
-                name: "Svalbard &amp; Jan Mayen",
+                name: "Svalbard & Jan Mayen",
                 optionalLabels: {
                   address2: "Apartment, suite, etc. (optional)"
                 },
@@ -8724,7 +8724,7 @@ export const Countries = (arrayDefault, showContinent) => {
                   postalCode: "Postal code",
                   zone: "Region"
                 },
-                name: "Trinidad &amp; Tobago",
+                name: "Trinidad & Tobago",
                 optionalLabels: {
                   address2: "Apartment, suite, etc. (optional)"
                 },
@@ -8859,7 +8859,7 @@ export const Countries = (arrayDefault, showContinent) => {
                   postalCode: "Postal code",
                   zone: "Region"
                 },
-                name: "Turks &amp; Caicos Islands",
+                name: "Turks & Caicos Islands",
                 optionalLabels: {
                   address2: "Apartment, suite, etc. (optional)"
                 },
@@ -9534,7 +9534,7 @@ export const Countries = (arrayDefault, showContinent) => {
                   postalCode: "Postal code",
                   zone: "Region"
                 },
-                name: "Wallis &amp; Futuna",
+                name: "Wallis & Futuna",
                 optionalLabels: {
                   address2: "Apartment, suite, etc. (optional)"
                 },
@@ -9654,8 +9654,8 @@ export const Countries = (arrayDefault, showContinent) => {
     }else{
         if(arrayDefault?.length > 0){
             arrayDefault?.forEach(element => {
-                    const dObj = {"name": element?.continent, countries: [element]}
-                    finalArray.push(dObj);
+              const dObj = {"name": element?.continent, countries: [element]}
+              finalArray.push(dObj);
             });
             const result = finalArray.reduce((acc, {name, countries}) => {
                 acc[name] = acc[name] ? acc[name] : {name: name, countries: []};
@@ -20705,8 +20705,11 @@ export const Countries = (arrayDefault, showContinent) => {
                     }
                 ]
             }
-           ];
+            ];
         }
     }
+    finalArray.sort((a, b) => a.name > b.name ? 1 : -1);
+    finalArray.forEach(item => item?.zones?.sort((a,b) => a.name > b.name ? 1: -1));
+
     return finalArray;
 }
