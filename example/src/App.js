@@ -705,7 +705,7 @@ const App = () => {
           omitSelected={true}
           expandChip={true}
           selectedValue={selectedDat}
-        //   showCustomList={data}
+          showCustomList={data}
           selectAllOption={true}
         //   style={{background : "red"}}
           onViewmore={(v) => alert("viewed")}
