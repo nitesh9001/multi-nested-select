@@ -439,7 +439,7 @@ const NestedSelect = ({
                                 <img src={Close} style={{ width: 8, marginLeft: 4, cursor: "pointer" }} onClick={() => chipDelete(item)} />
                             </span>
                             )}
-                            {(checkedValues?.length > chipNoCount) && chipExpandView && <span className="NSI-main-more-trailing" onClick={() => {
+                            {(checkedValues?.length > chipNoCount) && <span className="NSI-main-more-trailing" onClick={() => {
                                 if (onViewmore) {
                                     //   setToggleView(!toggleView);
                                     onViewmore(checkedValues);
@@ -448,6 +448,11 @@ const NestedSelect = ({
                                     setChipNoCount(checkedValues?.length)
                                 }
                             }}>{!toggleView ? `+ ${checkedValues?.length - chipNoCount} more` : "Less"}</span>}
+                            {(checkedValues?.length == chipNoCount) && chipExpandView && <span className="NSI-main-more-trailing" onClick={() => {
+                                if (chipExpandView) {
+                                    setChipNoCount(chipCount ? chipCount : 5)
+                                }
+                            }}>Less</span>}
                         </div>
                     }
                 </div>

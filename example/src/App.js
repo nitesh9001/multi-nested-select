@@ -1012,8 +1012,8 @@ const App = () => {
           height={200}
           leading={true}
           disable={d}
-        //   chip={true}
-        //   chipCount={5}
+          chip={true}
+          chipCount={10}
         //   error={erTg}
         //   helperText="error occured"
           placeholderCtx={false}
@@ -1021,7 +1021,7 @@ const App = () => {
           trailingIcon={true}
           inputClass="myCustom_text"
           continent={false}
-          omitSelected={true}
+          omitSelected={false}
           expandChip={true}
           selectedValue={selectedDat}
         //   showCustomList={data}
