@@ -66,7 +66,326 @@ const App = () => {
             "show": "{firstName} {lastName}_{company}_{address1}_{address2}_{city} {zip}_{country}_{phone}"
         }
     },
-
+    {
+        "code": "US",
+        "continent": "North America",
+        "count": 62,
+        "disabled": true,
+        "name": "United States",
+        "provinceKey": "STATE",
+        "zones": [
+            {
+                "code": "AL",
+                "disabled": true,
+                "name": "Alabama"
+            },
+            {
+                "code": "AK",
+                "disabled": true,
+                "name": "Alaska"
+            },
+            {
+                "code": "AS",
+                "disabled": true,
+                "name": "American Samoa"
+            },
+            {
+                "code": "AZ",
+                "disabled": true,
+                "name": "Arizona"
+            },
+            {
+                "code": "AR",
+                "disabled": true,
+                "name": "Arkansas"
+            },
+            {
+                "code": "CA",
+                "disabled": true,
+                "name": "California"
+            },
+            {
+                "code": "CO",
+                "disabled": true,
+                "name": "Colorado"
+            },
+            {
+                "code": "CT",
+                "disabled": true,
+                "name": "Connecticut"
+            },
+            {
+                "code": "DE",
+                "disabled": true,
+                "name": "Delaware"
+            },
+            {
+                "code": "DC",
+                "disabled": true,
+                "name": "Washington DC"
+            },
+            {
+                "code": "FM",
+                "disabled": true,
+                "name": "Micronesia"
+            },
+            {
+                "code": "FL",
+                "disabled": true,
+                "name": "Florida"
+            },
+            {
+                "code": "GA",
+                "disabled": true,
+                "name": "Georgia"
+            },
+            {
+                "code": "GU",
+                "disabled": true,
+                "name": "Guam"
+            },
+            {
+                "code": "HI",
+                "disabled": true,
+                "name": "Hawaii"
+            },
+            {
+                "code": "ID",
+                "disabled": true,
+                "name": "Idaho"
+            },
+            {
+                "code": "IL",
+                "disabled": true,
+                "name": "Illinois"
+            },
+            {
+                "code": "IN",
+                "disabled": true,
+                "name": "Indiana"
+            },
+            {
+                "code": "IA",
+                "disabled": true,
+                "name": "Iowa"
+            },
+            {
+                "code": "KS",
+                "disabled": true,
+                "name": "Kansas"
+            },
+            {
+                "code": "KY",
+                "disabled": true,
+                "name": "Kentucky"
+            },
+            {
+                "code": "LA",
+                "disabled": true,
+                "name": "Louisiana"
+            },
+            {
+                "code": "ME",
+                "disabled": true,
+                "name": "Maine"
+            },
+            {
+                "code": "MH",
+                "disabled": true,
+                "name": "Marshall Islands"
+            },
+            {
+                "code": "MD",
+                "disabled": true,
+                "name": "Maryland"
+            },
+            {
+                "code": "MA",
+                "disabled": true,
+                "name": "Massachusetts"
+            },
+            {
+                "code": "MI",
+                "disabled": true,
+                "name": "Michigan"
+            },
+            {
+                "code": "MN",
+                "disabled": true,
+                "name": "Minnesota"
+            },
+            {
+                "code": "MS",
+                "disabled": true,
+                "name": "Mississippi"
+            },
+            {
+                "code": "MO",
+                "disabled": true,
+                "name": "Missouri"
+            },
+            {
+                "code": "MT",
+                "disabled": true,
+                "name": "Montana"
+            },
+            {
+                "code": "NE",
+                "disabled": true,
+                "name": "Nebraska"
+            },
+            {
+                "code": "NV",
+                "disabled": true,
+                "name": "Nevada"
+            },
+            {
+                "code": "NH",
+                "disabled": true,
+                "name": "New Hampshire"
+            },
+            {
+                "code": "NJ",
+                "disabled": true,
+                "name": "New Jersey"
+            },
+            {
+                "code": "NM",
+                "disabled": true,
+                "name": "New Mexico"
+            },
+            {
+                "code": "NY",
+                "disabled": true,
+                "name": "New York"
+            },
+            {
+                "code": "NC",
+                "disabled": true,
+                "name": "North Carolina"
+            },
+            {
+                "code": "ND",
+                "disabled": true,
+                "name": "North Dakota"
+            },
+            {
+                "code": "MP",
+                "disabled": true,
+                "name": "Northern Mariana Islands"
+            },
+            {
+                "code": "OH",
+                "disabled": true,
+                "name": "Ohio"
+            },
+            {
+                "code": "OK",
+                "disabled": true,
+                "name": "Oklahoma"
+            },
+            {
+                "code": "OR",
+                "disabled": true,
+                "name": "Oregon"
+            },
+            {
+                "code": "PW",
+                "disabled": true,
+                "name": "Palau"
+            },
+            {
+                "code": "PA",
+                "disabled": true,
+                "name": "Pennsylvania"
+            },
+            {
+                "code": "PR",
+                "disabled": true,
+                "name": "Puerto Rico"
+            },
+            {
+                "code": "RI",
+                "disabled": true,
+                "name": "Rhode Island"
+            },
+            {
+                "code": "SC",
+                "disabled": true,
+                "name": "South Carolina"
+            },
+            {
+                "code": "SD",
+                "disabled": true,
+                "name": "South Dakota"
+            },
+            {
+                "code": "TN",
+                "disabled": true,
+                "name": "Tennessee"
+            },
+            {
+                "code": "TX",
+                "disabled": true,
+                "name": "Texas"
+            },
+            {
+                "code": "UT",
+                "disabled": true,
+                "name": "Utah"
+            },
+            {
+                "code": "VT",
+                "disabled": true,
+                "name": "Vermont"
+            },
+            {
+                "code": "VI",
+                "disabled": true,
+                "name": "U.S. Virgin Islands"
+            },
+            {
+                "code": "VA",
+                "disabled": true,
+                "name": "Virginia"
+            },
+            {
+                "code": "WA",
+                "disabled": true,
+                "name": "Washington"
+            },
+            {
+                "code": "WV",
+                "disabled": true,
+                "name": "West Virginia"
+            },
+            {
+                "code": "WI",
+                "disabled": true,
+                "name": "Wisconsin"
+            },
+            {
+                "code": "WY",
+                "disabled": true,
+                "name": "Wyoming"
+            },
+            {
+                "code": "AA",
+                "disabled": true,
+                "name": "Armed Forces Americas"
+            },
+            {
+                "code": "AE",
+                "disabled": true,
+                "name": "Armed Forces Europe"
+            },
+            {
+                "code": "AP",
+                "disabled": true,
+                "name": "Armed Forces Pacific"
+            }
+        ]
+    }    
    ]
     const data = [
         {
@@ -707,7 +1026,6 @@ const App = () => {
           selectedValue={selectedDat}
         //   showCustomList={data}
           selectAllOption={true}
-        //   style={{background : "red"}}
           onViewmore={(v) => alert("viewed")}
           onChipDelete={(v) => alert("deleted")}
           onChange={(v) => console.log("okay", v)}

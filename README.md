@@ -96,10 +96,12 @@ onChange(e_selected) {
 | `selectLimit` | `number` | `-1` | You can limit the number of items that can be selected in a dropdown
 | `placeholder` | `string` | `Select Area` | Placeholder text
 | `buttonContent` | `string` | `Save Selected` | To display the button text content`
+| `disable` | `bool` | `false` | to disaled / enabled the button 
+| `selectAllOption` | `bool` | `false` | to enable "All regions" select option to select in one go
 | `width` | `number` | `360` | width of the component.
 | `height` | `number` | `260` | height of the dropdown.
 | `chip` | `bool` | `false` | view selected option as chip.
-| `chipCount` | `number` | `5` | chip count displayed on input .
+| `chipCount` | `number` | `5` | chip count displayed on input.
 | `placeholderCtx` | `bool` | `true` | enabale/ disable placeholderctx after option select.
 | `enableButton` | `bool` | `true` | Make it `false` to hide the button.
 | `trailing` | `bool` | `true` | Make it `false` to hide the trailing message ex- 0 of 24 selected'.
