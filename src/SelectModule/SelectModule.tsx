@@ -441,14 +441,14 @@ const NestedSelect = ({
                             )}
                             {(checkedValues?.length > chipNoCount) && <span className="NSI-main-more-trailing" onClick={() => {
                                 if (onViewmore) {
-                                    //   setToggleView(!toggleView);
+                                    setToggleView(true);
                                     onViewmore(checkedValues);
                                 }
                                 if (chipExpandView) {
                                     setChipNoCount(checkedValues?.length)
                                 }
-                            }}>{!toggleView ? `+ ${checkedValues?.length - chipNoCount} more` : "Less"}</span>}
-                            {(checkedValues?.length == chipNoCount) && chipExpandView && <span className="NSI-main-more-trailing" onClick={() => {
+                            }}> + {checkedValues?.length - chipNoCount} more</span>}
+                            {(checkedValues?.length == chipNoCount) && chipExpandView && toggleView && <span className="NSI-main-more-trailing" onClick={() => {
                                 if (chipExpandView) {
                                     setChipNoCount(chipCount ? chipCount : 5)
                                 }
