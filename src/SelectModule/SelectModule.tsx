@@ -71,6 +71,12 @@ const NestedSelect = ({
     const ref = useRef<null | any>(null);
 
     useEffect(() => {
+        selectedValue.map((country:any )=> {
+            delete country.disabled;
+            if(country?.zones?.length > 0){
+                country.zones.map((zone: any) => delete zone.disabled)
+            }
+        });
         setSelectItemLimit(selectLimit ?? -1);
         setcheckedValues(selectedValue ?? []);
     }, []);
@@ -192,21 +198,26 @@ const NestedSelect = ({
         }
     }
     const excludeDisabled = (value: any) => {
-        let dataFinals = JSON.parse(JSON.stringify(value))
-        const dataFinal = dataFinals.filter((d: any) => d?.disabled !== true);
-        dataFinal.forEach((d: any) =>  {
-            if( d.zones?.length > 0){
-                d.zones = d?.zones.filter((it: any) => it?.disabled !== true);
-            }
-        });
-        console.log("logs 2", dataFinal);
-        setcheckedValues([...dataFinal]);
-        setSavedValues([...dataFinal]);
-        dataFor = dataFinal;
+        if(showCustomList?.length > 0){
+            let dataFinals = JSON.parse(JSON.stringify(value))
+            const dataFinal = dataFinals.filter((d: any) => d?.disabled !== true);
+            dataFinal.forEach((d: any) =>  {
+                if( d.zones?.length > 0){
+                    d.zones = d?.zones.filter((it: any) => it?.disabled !== true);
+                }
+            });
+            setcheckedValues([...dataFinal]);
+            setSavedValues([...dataFinal]);
+            dataFor = dataFinal;
+        }else{
+            setcheckedValues([...value]);
+            setSavedValues([...value]);
+            dataFor = value;
+        }
         onChangeComp();
     }
     const selecttheCountry = (e: any, c_data?: any) => {
-        setselectAllRegions(!selectAllRegions)
+        setselectAllRegions(false)
         var array: any | undefined = [];
         if (findInselected(c_data, false)[0]) {
             array = checkedValues.filter((item: any) => item.code !== c_data.code)
@@ -428,15 +439,20 @@ const NestedSelect = ({
                                 <img src={Close} style={{ width: 8, marginLeft: 4, cursor: "pointer" }} onClick={() => chipDelete(item)} />
                             </span>
                             )}
-                            {(checkedValues?.length > chipNoCount) && chipExpandView && <span className="NSI-main-more-trailing" onClick={() => {
+                            {(checkedValues?.length > chipNoCount) && <span className="NSI-main-more-trailing" onClick={() => {
                                 if (onViewmore) {
-                                    //   setToggleView(!toggleView);
+                                    setToggleView(true);
                                     onViewmore(checkedValues);
                                 }
                                 if (chipExpandView) {
                                     setChipNoCount(checkedValues?.length)
                                 }
-                            }}>{!toggleView ? `+ ${checkedValues?.length - chipNoCount} more` : "Less"}</span>}
+                            }}> + {checkedValues?.length - chipNoCount} more</span>}
+                            {(checkedValues?.length == chipNoCount) && chipExpandView && toggleView && <span className="NSI-main-more-trailing" onClick={() => {
+                                if (chipExpandView) {
+                                    setChipNoCount(chipCount ? chipCount : 5)
+                                }
+                            }}>Less</span>}
                         </div>
                     }
                 </div>
